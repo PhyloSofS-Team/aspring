@@ -1,6 +1,6 @@
 import pytest
 
-from asprin.skeleton import fib, main
+from aspring.skeleton import fib, main
 
 __author__ = "Diego Javier Zea"
 __copyright__ = "Diego Javier Zea"

@@ -1,8 +1,8 @@
 ======
-asprin
+aspring
 ======
 
-This is the documentation of **asprin**.
+This is the documentation of **aspring**.
 
 .. note::
 

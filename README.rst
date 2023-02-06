@@ -1,28 +1,12 @@
-.. These are examples of badges you might want to add to your README:
-   please update the URLs accordingly
-
-    .. image:: https://api.cirrus-ci.com/github/<USER>/asprin.svg?branch=main
-        :alt: Built Status
-        :target: https://cirrus-ci.com/github/<USER>/asprin
-    .. image:: https://readthedocs.org/projects/asprin/badge/?version=latest
-        :alt: ReadTheDocs
-        :target: https://asprin.readthedocs.io/en/stable/
-    .. image:: https://img.shields.io/coveralls/github/<USER>/asprin/main.svg
-        :alt: Coveralls
-        :target: https://coveralls.io/r/<USER>/asprin
-    .. image:: https://img.shields.io/pypi/v/asprin.svg
-        :alt: PyPI-Server
-        :target: https://pypi.org/project/asprin/
-    .. image:: https://img.shields.io/conda/vn/conda-forge/asprin.svg
-        :alt: Conda-Forge
-        :target: https://anaconda.org/conda-forge/asprin
-    .. image:: https://pepy.tech/badge/asprin/month
-        :alt: Monthly Downloads
-        :target: https://pepy.tech/project/asprin
-    .. image:: https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter
-        :alt: Twitter
-        :target: https://twitter.com/asprin
-
+.. image:: https://readthedocs.org/projects/aspring/badge/?version=latest
+    :alt: ReadTheDocs
+    :target: https://aspring.readthedocs.io/en/stable/
+.. image:: https://img.shields.io/coveralls/github/PhyloSofS-Team/aspring/main.svg
+    :alt: Coveralls
+    :target: https://coveralls.io/r/PhyloSofS-Team/aspring
+.. image:: https://img.shields.io/pypi/v/aspring.svg
+    :alt: PyPI-Server
+    :target: https://pypi.org/project/aspring/
 .. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
     :alt: Project generated with PyScaffold
     :target: https://pyscaffold.org/
@@ -30,7 +14,7 @@
 |
 
 ======
-asprin
+aspring
 ======
 
 
