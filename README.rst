@@ -18,10 +18,10 @@ aspring
 ======
 
 
-    A Python package to define the Alternative Splicing Repetitive Units (ASRUs) of a gene
+    Alternatively Spliced Pseudo Repeat IN-Gene
 
 
-A longer description of your project goes here...
+A Python package to define the Alternative Splicing Repetitive Units (ASRUs) of a gene
 
 
 .. _pyscaffold-notes:
