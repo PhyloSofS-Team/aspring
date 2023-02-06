@@ -88,7 +88,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "aspring"
-copyright = "2023, Diego Javier Zea"
+copyright = "2023, Antoine Szatkownik, Diego Javier Zea, Hugues Richard & Elodie Laine"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -246,7 +246,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-    ("index", "user_guide.tex", "aspring Documentation", "Diego Javier Zea", "manual")
+    ("index", "user_guide.tex", "aspring Documentation", "Antoine Szatkownik, Diego Javier Zea, Hugues Richard & Elodie Laine", "manual")
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
