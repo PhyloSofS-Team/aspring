@@ -55,14 +55,11 @@ jobs:
     strategy:
       matrix:
         python:
-        # - "3.6.7" # min ThorAxe's requirement 
-        #   that is available:
-        #   https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
-        - "3.7"
+        - "3.7" # min supported version
         - "3.8.16" # max ThorAxe's requirement
         - "3.11"  # newest Python that is stable
         platform:
-        - ubuntu-20.04 # to allow testing Python 3.6.7
+        - ubuntu-latest
         - macos-latest
     runs-on: ${{ matrix.platform }}
     steps:
