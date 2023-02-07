@@ -55,7 +55,8 @@ jobs:
     strategy:
       matrix:
         python:
-        - "3.6.1" # min ThorAxe's requirement
+        - "3.6.7" # min ThorAxe's requirement 
+        # that is available: https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
         - "3.8.16" # max ThorAxe's requirement
         - "3.11"  # newest Python that is stable
         platform:
