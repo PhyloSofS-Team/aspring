@@ -23,12 +23,10 @@ def parse_args(args):
                         required=True,
                         help='path to dir containing Thoraxe outputs')
     parser.add_argument(
-        '--path_hhsuite',
+        '--path_hhsuite_scripts',
         type=str,
         required=True,
-        help=
-        'path to dir of hhsuite ( YOURPATH/hhsuite or YOURPATH/hh-suite/build )'
-    )
+        help='path to the folder containing the scripts of hhsuite')
     parser.add_argument(
         '--len',
         type=int,
@@ -100,20 +98,21 @@ def parse_args(args):
     return parser.parse_args(args)
 
 
-def run_pipeline(gene, path_data, path, msa_len, msa_id_threshold, re_align,
-                 glo_loc, mact, id_pair, idCons_pair, pval, nbSpe, cov):
+def run_pipeline(gene, path_data, path_hhsuite_scripts, msa_len,
+                 msa_id_threshold, re_align, glo_loc, mact, id_pair,
+                 idCons_pair, pval, nbSpe, cov):
     print("START STEP 1 : pre-processing : convert .fasta to .a2m")
-    bashCommand = f"step_01_preprocess --gene {gene} --dataPATH {path_data} --hhsuitePATH {path} --len {msa_len}"
+    bashCommand = f"step_01_preprocess --gene {gene} --dataPATH {path_data} --path_hhsuite_scripts {path_hhsuite_scripts} --len {msa_len}"
     subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
     print("END STEP 1")
 
     print("START STEP 2 : pre-processing : create HMM profiles")
-    bashCommand = f"step_02_hmm_maker --gene {gene} --path_data {path_data} --path {path} --id {msa_id_threshold}"
+    bashCommand = f"step_02_hmm_maker --gene {gene} --path_data {path_data} --id {msa_id_threshold}"
     subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
     print("END STEP 2")
 
     print("START STEP 3 : all-to-all pairwise HMM-HMM profile alignments")
-    bashCommand = f"step_03_hmm_aligner --gene {gene} --path_data {path_data} --path {path} --id {msa_id_threshold} --norealign {re_align} --glo_loc {glo_loc} --mact {mact}"
+    bashCommand = f"step_03_hmm_aligner --gene {gene} --path_data {path_data} --id {msa_id_threshold} --norealign {re_align} --glo_loc {glo_loc} --mact {mact}"
     subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
     print("END STEP 3")
 
@@ -128,7 +127,7 @@ def run_pipeline(gene, path_data, path, msa_len, msa_id_threshold, re_align,
     print("END STEP 5")
 
     df = pd.read_csv(
-        f'{path_data}/data/{gene}/{gene}_duplication_pairs_formated.csv')
+        os.path.join(path_data, 'data', gene, gene + '_duplication_pairs_formated.csv'))
     if df.shape[0] == 0:
         print('There are no similar pairs of s-exons')
         sys.exit()
@@ -161,7 +160,7 @@ def run():
 
     gene = args.geneName
     path_data = args.path_data
-    path = args.path_hhsuite
+    path_hhsuite_scripts = args.path_hhsuite_scripts
     msa_len = args.len
     msa_id_threshold = args.id  # maximum pairwise sequence identity
     re_align = args.norealign
@@ -173,8 +172,9 @@ def run():
     nbSpe = args.nbSpe
     cov = args.cov
 
-    run_pipeline(gene, path_data, path, msa_len, msa_id_threshold, re_align,
-                 glo_loc, mact, id_pair, idCons_pair, pval, nbSpe, cov)
+    run_pipeline(gene, path_data, path_hhsuite_scripts, msa_len,
+                 msa_id_threshold, re_align, glo_loc, mact, id_pair,
+                 idCons_pair, pval, nbSpe, cov)
 
 
 if __name__ == '__main__':

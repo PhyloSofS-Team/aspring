@@ -31,13 +31,6 @@ def parse_args(args):
     #parser.add_argument('--qsc', type=float, required=False, help='[0,100] minimum score per column with query (def=0)', default=0)
     #parser.add_argument('--len',   type=int, required=False, help='dont create profile for msa in which sequences are of length < X aa (def=5)', default=5)
     parser.add_argument(
-        '--path',
-        type=str,
-        required=True,
-        help=
-        'path to bin dir of hhsuite ( YOURPATH/hhsuite or YOURPATH/hh-suite/build )'
-    )  #change it to hh-suite for users that didn't downloaded it from https://mmseqs.com/hhsuite/
-    parser.add_argument(
         "--version",
         action="version",
         version=f"aspring {__version__}",
@@ -45,7 +38,7 @@ def parse_args(args):
     return parser.parse_args(args)
 
 
-def hmm_maker(gene, msa_id_threshold, path_data, hhsuitebin_path):
+def hmm_maker(gene, msa_id_threshold, path_data):
     """Create HMM profiles for all s-exons of a chosen gene"""
 
     msa_folder = f'{path_data}/{gene}/thoraxe/msa'
@@ -69,7 +62,7 @@ def hmm_maker(gene, msa_id_threshold, path_data, hhsuitebin_path):
         if os.path.isfile(hmm_out):
             print('hmm_out is already created')
             continue
-        bashCommand = f"{hhsuitebin_path}/bin/hhmake -i {msa} -o {hmm_out} -v 0 -name {s_exon_id} -id {msa_id_threshold} -M a2m"
+        bashCommand = f"hhmake -i {msa} -o {hmm_out} -v 0 -name {s_exon_id} -id {msa_id_threshold} -M a2m"
         subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
 
 
@@ -81,10 +74,9 @@ def run():
     #msa_gap_threshold = args.M    # columns with fewer than X\% gaps are match states
     #msa_col_score = args.qsc    # columns with fewer than X\% gaps are match states
     path_data = args.path_data
-    hhsuitebin_path = args.path
     #msa_len = args.len
 
-    hmm_maker(gene, msa_id_threshold, path_data, hhsuitebin_path)
+    hmm_maker(gene, msa_id_threshold, path_data)
 
 
 if __name__ == '__main__':

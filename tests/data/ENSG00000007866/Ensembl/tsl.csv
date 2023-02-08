@@ -1,0 +1,45 @@
+Species,Name,TranscriptID,Source,ExperimentSource,Biotype,Flags,Version
+homo_sapiens,TEAD3-202,ENST00000402886,havana,havana_homo_sapiens,nonsense_mediated_decay,1 (assigned to previous version 7),9
+homo_sapiens,TEAD3-201,ENST00000338863,ensembl_havana,ensembl_havana_transcript_homo_sapiens,protein_coding,1 (assigned to previous version 11),13
+homo_sapiens,TEAD3-203,ENST00000639578,havana,havana_homo_sapiens,protein_coding,1 (assigned to previous version 1),3
+gorilla_gorilla,TEAD3-201,ENSGGOT00000001859,ensembl,ensembl,protein_coding,NA,3
+gorilla_gorilla,TEAD3-202,ENSGGOT00000025957,ensembl,ensembl,protein_coding,NA,2
+gorilla_gorilla,TEAD3-203,ENSGGOT00000046875,ensembl,ensembl,protein_coding,NA,1
+gorilla_gorilla,TEAD3-204,ENSGGOT00000056106,ensembl,ensembl,protein_coding,NA,1
+ornithorhynchus_anatinus,TEAD3-201,ENSOANT00000022278,ensembl,ensembl,protein_coding,NA,3
+ornithorhynchus_anatinus,TEAD3-202,ENSOANT00000074467,ensembl,ensembl,protein_coding,NA,1
+macaca_mulatta,TEAD3-201,ENSMMUT00000022357,ensembl,ensembl,protein_coding,NA,4
+macaca_mulatta,Metazoa_SRP-201,ENSMMUT00000099933,ensembl,ncrna,misc_RNA,NA,1
+rattus_norvegicus,Tead3-202,ENSRNOT00000000607,ensembl,ensembl,protein_coding,NA,7
+rattus_norvegicus,Tead3-203,ENSRNOT00000096677,ensembl,ensembl,protein_coding,NA,1
+rattus_norvegicus,Tead3-201,ENSRNOT00000107495,ensembl,ensembl,protein_coding,NA,1
+bos_taurus,TEAD3-201,ENSBTAT00000025965,ensembl,ensembl,protein_coding,NA,6
+bos_taurus,TEAD3-202,ENSBTAT00000086634,ensembl,ensembl,protein_coding,NA,1
+bos_taurus,NA,ENSBTAT00000077018,ensembl,ensembl,protein_coding,NA,1
+sus_scrofa,TEAD3-205,ENSSSCT00000091268,ensembl,ensembl,protein_coding,NA,1
+sus_scrofa,TEAD3-204,ENSSSCT00000079468,ensembl,ensembl,protein_coding,NA,1
+sus_scrofa,TEAD3-203,ENSSSCT00000079379,ensembl,ensembl,protein_coding,NA,1
+sus_scrofa,TEAD3-202,ENSSSCT00000071242,ensembl,ensembl,protein_coding,NA,1
+sus_scrofa,TEAD3-201,ENSSSCT00000001722,ensembl,ensembl,protein_coding,NA,4
+monodelphis_domestica,TEAD3-201,ENSMODT00000032959,ensembl,ensembl,protein_coding,NA,3
+monodelphis_domestica,TEAD3-202,ENSMODT00000017521,ensembl,ensembl,protein_coding,NA,4
+mus_musculus,Tead3-205,ENSMUST00000154873,ensembl_havana,ensembl_havana_transcript_mus_musculus,protein_coding,1 (assigned to previous version 7),9
+mus_musculus,Tead3-201,ENSMUST00000114799,ensembl_havana,ensembl_havana_transcript_mus_musculus,protein_coding,1 (assigned to previous version 7),8
+mus_musculus,Tead3-206,ENSMUST00000156862,ensembl_havana,ensembl_havana_transcript_mus_musculus,protein_coding,1 (assigned to previous version 1),3
+mus_musculus,Tead3-202,ENSMUST00000127212,havana,havana_mus_musculus,retained_intron,2 (assigned to previous version 7),9
+mus_musculus,Tead3-207,ENSMUST00000219703,havana,havana_mus_musculus,protein_coding,1 (assigned to previous version 1),3
+mus_musculus,Tead3-203,ENSMUST00000146668,havana,havana_mus_musculus,retained_intron,3 (assigned to previous version 7),9
+mus_musculus,Tead3-204,ENSMUST00000151557,havana,havana_mus_musculus,retained_intron,5 (assigned to previous version 1),2
+mus_musculus,Tead3-208,ENSMUST00000226172,havana,havana_mus_musculus,processed_transcript,NA,2
+mus_musculus,Tead3-209,ENSMUST00000233330,havana,havana_mus_musculus,retained_intron,NA,2
+caenorhabditis_elegans,NA,F28B12.2a.1,WormBase,wormbase,protein_coding,NA,NA
+caenorhabditis_elegans,NA,F28B12.2b.1,WormBase,wormbase,protein_coding,NA,NA
+caenorhabditis_elegans,NA,F28B12.2c.1,WormBase,wormbase,protein_coding,NA,NA
+caenorhabditis_elegans,NA,F28B12.2d.1,WormBase,wormbase,protein_coding,NA,NA
+caenorhabditis_elegans,NA,F28B12.2f.1,WormBase,wormbase,protein_coding,NA,NA
+caenorhabditis_elegans,NA,F28B12.2g.1,WormBase,wormbase,protein_coding,NA,NA
+caenorhabditis_elegans,NA,F28B12.2h.1,WormBase,wormbase,protein_coding,NA,NA
+caenorhabditis_elegans,NA,F28B12.2i.1,WormBase,wormbase,protein_coding,NA,NA
+caenorhabditis_elegans,NA,F28B12.2j.1,WormBase,wormbase,protein_coding,NA,NA
+caenorhabditis_elegans,NA,F28B12.2k.1,WormBase,wormbase,protein_coding,NA,NA
+caenorhabditis_elegans,NA,F28B12.4,WormBase,wormbase_non_coding,piRNA,NA,NA

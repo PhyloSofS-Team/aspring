@@ -1,0 +1,2 @@
+gene,sexA,sexB,rank,type,statusA,statusB,lePathA,lePathB,exclu,pval,ncols,leA,leB,typePair,ColA,ColB
+ENSG00000007866,10_3,10_1,1,alternative,alt,can,1,1,True,6.3e-08,21,21,21,MEX,1-21,1-21

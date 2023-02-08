@@ -24,6 +24,9 @@ aspring
 A Python package to define the Alternative Splicing Repetitive Units (ASRUs) of a gene
 
 
+hhmake and hhalign should be in the PATH
+
+
 .. _pyscaffold-notes:
 
 Note

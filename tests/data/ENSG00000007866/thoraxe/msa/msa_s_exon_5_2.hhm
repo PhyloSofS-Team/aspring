@@ -1,0 +1,84 @@
+HHsearch 1.5
+NAME  5_2
+FAM   
+COM   /Users/antoineszatkownik/Documents/scripts/hhsuite/bin/hhmake -i /Users/antoineszatkownik/Documents/projetAS/lab_bench/ENSG00000007866/thoraxe/msa/msa_s_exon_5_2.a2m -o /Users/antoineszatkownik/Documents/projetAS/lab_bench/ENSG00000007866/thoraxe/msa/msa_s_exon_5_2.hhm -v 0 -name 5_2 -id 100.0 -M a2m 
+DATE  Tue Jan  3 20:05:40 2023
+LENG  16 match states, 16 columns in multiple alignment
+
+FILT  9 out of 9 sequences passed filter (-id 100 -cov 0 -qid 0 -qsc -20 -diff 100)
+NEFF  1.1 
+SEQ
+>Consensus
+lyekgppnafflvkfw
+>ENSG00000007866
+LYEKGPPNAFFLVKFW
+>ENSGGOG00000001847
+LYEKGPPNAFFLVKFW
+>ENSMMUG00000015909
+LYEKGPPNAFFLVKFW
+>ENSMODG00000013762
+LYEKGPPNAFFLVKFW
+>ENSRNOG00000000506
+LYEKGPPNAFFLVKFW
+>ENSMUSG00000002249
+LYEKGPPNAFFLVKFW
+>ENSBTAG00000019495
+LYEKGPPNAFFLVKFW
+>ENSSSCG00000001544
+LYEKGPPNAFFLVKFW
+>ENSOANG00000014121
+LYERGPPSAFFLVKFW
+#
+NULL   3706	5728	4211	4064	4839	3729	4763	4308	4069	3323	5509	4640	4464	4937	4285	4423	3815	3783	6325	4665	
+HMM    A	C	D	E	F	G	H	I	K	L	M	N	P	Q	R	S	T	V	W	Y	
+       M->M	M->I	M->D	I->M	I->I	D->M	D->D	Neff	Neff_I	Neff_D
+       0	*	*	0	*	0	*	*	*	*	
+L 1    *	*	*	*	*	*	*	*	*	0	*	*	*	*	*	*	*	*	*	*	1
+       0	*	*	*	*	*	*	1056	0	0	
+
+Y 2    *	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	0	2
+       0	*	*	*	*	*	*	1056	0	0	
+
+E 3    *	*	*	0	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	3
+       0	*	*	*	*	*	*	1056	0	0	
+
+K 4    *	*	*	*	*	*	*	*	251	*	*	*	*	*	2646	*	*	*	*	*	4
+       0	*	*	*	*	*	*	1056	0	0	
+
+G 5    *	*	*	*	*	0	*	*	*	*	*	*	*	*	*	*	*	*	*	*	5
+       0	*	*	*	*	*	*	1056	0	0	
+
+P 6    *	*	*	*	*	*	*	*	*	*	*	*	0	*	*	*	*	*	*	*	6
+       0	*	*	*	*	*	*	1056	0	0	
+
+P 7    *	*	*	*	*	*	*	*	*	*	*	*	0	*	*	*	*	*	*	*	7
+       0	*	*	*	*	*	*	1056	0	0	
+
+N 8    *	*	*	*	*	*	*	*	*	*	*	251	*	*	*	2646	*	*	*	*	8
+       0	*	*	*	*	*	*	1056	0	0	
+
+A 9    0	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	9
+       0	*	*	*	*	*	*	1056	0	0	
+
+F 10   *	*	*	*	0	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	10
+       0	*	*	*	*	*	*	1056	0	0	
+
+F 11   *	*	*	*	0	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	11
+       0	*	*	*	*	*	*	1056	0	0	
+
+L 12   *	*	*	*	*	*	*	*	*	0	*	*	*	*	*	*	*	*	*	*	12
+       0	*	*	*	*	*	*	1056	0	0	
+
+V 13   *	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	0	*	*	13
+       0	*	*	*	*	*	*	1056	0	0	
+
+K 14   *	*	*	*	*	*	*	*	0	*	*	*	*	*	*	*	*	*	*	*	14
+       0	*	*	*	*	*	*	1056	0	0	
+
+F 15   *	*	*	*	0	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	15
+       0	*	*	*	*	*	*	1056	0	0	
+
+W 16   *	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	0	*	16
+       0	*	*	0	*	*	*	1056	0	0	
+
+//

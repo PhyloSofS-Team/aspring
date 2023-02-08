@@ -1,3 +1,4 @@
+import os
 import sys
 import glob
 import subprocess  # library to execute bash command line in python script
@@ -21,12 +22,10 @@ def parse_args(args):
                         required=True,
                         help='path to dir containing Thoraxe outputs')
     parser.add_argument(
-        '--hhsuitePATH',
+        '--path_hhsuite_scripts',
         type=str,
         required=True,
-        help=
-        'path to dir of hhsuite ( YOURPATH/hhsuite or YOURPATH/hh-suite/build )'
-    )
+        help='path to the folder containing the scripts of hhsuite')
     parser.add_argument(
         '--len',
         type=int,
@@ -43,7 +42,7 @@ def parse_args(args):
 
 
 def preprocess_msas(gene, path_data, path_hhsuite, msa_len):
-    msa_folder = f'{path_data}/{gene}/thoraxe/msa'
+    msa_folder = os.path.join(path_data, gene, 'thoraxe', 'msa')
     files = glob.glob(f"{msa_folder}/*")
     msas = [msa for msa in files if '.fasta' in msa]
     a2ms = [file for file in files if '.a2m' in file]
@@ -64,7 +63,9 @@ def preprocess_msas(gene, path_data, path_hhsuite, msa_len):
             continue
         else:
             s_exon_name = msa.split('/')[-1].rstrip('.fasta')
-            bashCommand = f"{path_hhsuite}/scripts/reformat.pl {msa} {path_data}/{gene}/thoraxe/msa/{s_exon_name}.a2m"
+            a2m_file = os.path.join(path_data, gene, 'thoraxe', 'msa',
+                                    f"{s_exon_name}.a2m")
+            bashCommand = f"{os.path.join(path_hhsuite, 'reformat.pl')} {msa} {a2m_file}"
             subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
 
 
@@ -74,7 +75,7 @@ def run():
 
     gene = args.geneName
     path_data = args.dataPATH
-    path_hhsuite = args.hhsuitePATH
+    path_hhsuite = args.path_hhsuite_scripts
     msa_len = args.len
 
     preprocess_msas(gene, path_data, path_hhsuite, msa_len)

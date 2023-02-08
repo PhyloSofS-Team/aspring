@@ -31,13 +31,6 @@ def parse_args(args):
                         required=True,
                         help='path to dir containing Thoraxe outputs')
     parser.add_argument(
-        '--path',
-        type=str,
-        required=True,
-        help=
-        'path to bin dir of hhsuite ( YOURPATH/hhsuite/bin or YOURPATH/hh-suite/build/bin )'
-    )
-    parser.add_argument(
         '--norealign',
         type=int,
         required=True,
@@ -66,7 +59,7 @@ def parse_args(args):
     return parser.parse_args(args)
 
 
-def hmm_aligner(gene, msa_id_threshold, path_data, hhsuitebin_path, re_align,
+def hmm_aligner(gene, msa_id_threshold, path_data, re_align,
                 glo_loc, mact):
     """
 	HMM-HMM profile alignment of all s-exons combinations for a chosen gene
@@ -97,7 +90,7 @@ def hmm_aligner(gene, msa_id_threshold, path_data, hhsuitebin_path, re_align,
         name_b = hmm_b.split('/')[-1].rstrip('.hhm')
         id_a, id_b = name_a[11:], name_b[11:]  #name is msa_s_exon_X
         hhr_out = gene_aln_folder + '/' + id_a + '.' + id_b + '.hhr'
-        bashCommand = f'{hhsuitebin_path}/bin/hhalign -i {hmm_a} -t {hmm_b} -o {hhr_out} -v 0 -id {msa_id_threshold} {dico_align[re_align]} {dico_gloloc[glo_loc]} -mact {mact}'
+        bashCommand = f'hhalign -i {hmm_a} -t {hmm_b} -o {hhr_out} -v 0 -id {msa_id_threshold} {dico_align[re_align]} {dico_gloloc[glo_loc]} -mact {mact}'
         if not os.path.exists(hhr_out):
             subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
 
@@ -110,12 +103,11 @@ def run():
     gene = args.geneName
     msa_id_threshold = args.id
     path_data = args.path_data
-    hhsuitebin_path = args.path
     re_align = args.norealign
     glo_loc = args.glo_loc
     mact = args.mact
 
-    hmm_aligner(gene, msa_id_threshold, path_data, hhsuitebin_path, re_align,
+    hmm_aligner(gene, msa_id_threshold, path_data, re_align,
                 glo_loc, mact)
 
 
