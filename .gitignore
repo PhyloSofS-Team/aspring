@@ -1,11 +1,11 @@
 # renv
-src/aspring/R_script/renv/library/
-src/aspring/R_script/renv/local/
-src/aspring/R_script/renv/cellar/
-src/aspring/R_script/renv/lock/
-src/aspring/R_script/renv/python/
-src/aspring/R_script/renv/sandbox/
-src/aspring/R_script/renv/staging/
+renv/library/
+renv/local/
+renv/cellar/
+renv/lock/
+renv/python/
+renv/sandbox/
+renv/staging/
 
 # Temporary and binary files
 *~
