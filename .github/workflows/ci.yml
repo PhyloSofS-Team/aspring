@@ -43,6 +43,8 @@ jobs:
         with:
           profile: '"src/aspring/R_script"'
           cache-version: 2
+      - name: Show renv environment
+          run: Rscript -e 'renv::status()'
       - name: Build package distribution files
         run: >-
           pipx run --python '${{ steps.setup-python.outputs.python-path }}'
