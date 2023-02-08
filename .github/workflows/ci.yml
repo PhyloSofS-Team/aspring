@@ -42,6 +42,7 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
         with:
           profile: '"src/aspring/R_script"'
+          cache-version: 2
       - name: Build package distribution files
         run: >-
           pipx run --python '${{ steps.setup-python.outputs.python-path }}'
