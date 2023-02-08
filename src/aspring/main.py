@@ -1,5 +1,4 @@
 import os
-import glob
 import subprocess  # library to execute bash command line in python script
 import argparse
 import sys
@@ -98,9 +97,20 @@ def parse_args(args):
     return parser.parse_args(args)
 
 
+def check_if_executable_exists(executable):
+    try:
+        subprocess.run([executable, '--version'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except FileNotFoundError:
+        raise Exception('{executable} is not in the PATH. Please install it and try again.')
+
+
 def run_pipeline(gene, path_data, path_hhsuite_scripts, msa_len,
                  msa_id_threshold, re_align, glo_loc, mact, id_pair,
                  idCons_pair, pval, nbSpe, cov):
+
+    check_if_executable_exists('hhmake')
+    check_if_executable_exists('hhmalign')
+
     print("START STEP 1 : pre-processing : convert .fasta to .a2m")
     bashCommand = f"step_01_preprocess --gene {gene} --dataPATH {path_data} --path_hhsuite_scripts {path_hhsuite_scripts} --len {msa_len}"
     subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
