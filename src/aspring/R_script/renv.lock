@@ -1,0 +1,5 @@
+R_VERSION=4.2.2
+
+PACKAGES=
+seqinr 4.2.16
+argparser 0.7.1
