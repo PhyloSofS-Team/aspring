@@ -30,7 +30,6 @@ def setup_and_run_pipeline(request, clean_up):
     path_gene = os.path.join(path_data, 'data', 'ENSG00000007866')
     path_ref = os.path.join(path_data, 'ENSG00000007866', 'ASPRING_reference')
 
-    
     # Local
     path_diego = '/home/diego/bin/miniconda3/scripts'
     if os.path.isdir(path_diego):
@@ -38,6 +37,9 @@ def setup_and_run_pipeline(request, clean_up):
     else:
         # GitHUb action CI
         path_hhsuite_scripts = "/usr/share/miniconda/envs/test/scripts"
+    # show the content of the directory
+    print(f"path_hhsuite_scripts : {path_hhsuite_scripts} : ",
+          os.listdir(path_hhsuite_scripts))
 
     gene = 'ENSG00000007866'
     msa_len = 5
