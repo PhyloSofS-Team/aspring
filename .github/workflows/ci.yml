@@ -73,8 +73,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: conda-incubator/setup-miniconda@v2
-        id: setup-conda
       - name: Install hhsuite
+        shell: bash -el {0}
         run: |
           conda install -c conda-forge -c bioconda hhsuite
           which hhalign
