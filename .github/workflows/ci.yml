@@ -41,7 +41,7 @@ jobs:
       - name: Setup R environment
         uses: r-lib/actions/setup-renv@v2
         with:
-          renv_path: src/aspring/R_script
+          profile: src/aspring/R_script
       - name: Build package distribution files
         run: >-
           pipx run --python '${{ steps.setup-python.outputs.python-path }}'
