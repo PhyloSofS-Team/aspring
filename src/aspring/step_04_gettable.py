@@ -127,8 +127,9 @@ def hhr2df(path, gene):
         gene_df_line.append(hhr_info[2][-1])  #nb species Q
         gene_df_line.append(
             len(
-                read_fasta(path + gene +
-                           f'/thoraxe/msa/msa_s_exon_{hhr_info[8][1]}.fasta')))
+                read_fasta(
+                    f'{path}/{gene}/thoraxe/msa/msa_s_exon_{hhr_info[8][1]}.fasta'
+                )))
         gene_df.append(gene_df_line)
 
     df = pd.DataFrame(gene_df)
@@ -178,16 +179,14 @@ def parse_args(args):
 
 
 def dupraw2table(path_data, gene):
-    os.makedirs(
-        path_data + '/data', exist_ok=True
-    )  #make gene_dir in DupRaw, if folder already exist don't do anything
-    os.makedirs(path_data + f'/data/{gene}', exist_ok=True)
-    #print(path_data+'/'+gene)
-    if len(glob.glob(path_data + '/DupRaw/' + gene + '/*')) == 0:
+    os.makedirs(f'{path_data}/data', exist_ok=True)
+    #make gene_dir in DupRaw, if folder already exist don't do anything
+    os.makedirs(f"{path_data}/data/{gene}", exist_ok=True)
+    if len(glob.glob(f'{path_data}/DupRaw/{gene}/*')) == 0:
         sys.exit()
-    path_table = path_data + f"/data/{gene}/{gene}_duplication_pairs.csv"
+    path_table = f"{path_data}/data/{gene}/{gene}_duplication_pairs.csv"
     if not os.path.exists(path_table):
-        hhr2df(path_data + '/', gene).to_csv(path_table, index=False)
+        hhr2df(path_data, gene).to_csv(path_table, index=False)
 
 
 def run():
