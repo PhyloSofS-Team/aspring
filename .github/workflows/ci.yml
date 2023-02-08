@@ -73,11 +73,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: conda-incubator/setup-miniconda@v2
+        id: setup-conda
+      - name: Install hhsuite
+        run: |
+          conda install -c conda-forge -c bioconda hhsuite
+          which hhalign
+      - uses: actions/setup-python@v4
         id: setup-python
         with:
           python-version: ${{ matrix.python }}
-      - name: Install hhsuite
-        run: conda install -c conda-forge -c bioconda hhsuite
       - name: Retrieve pre-built distribution files
         uses: actions/download-artifact@v3
         with: {name: python-distribution-files, path: dist/}
