@@ -99,7 +99,7 @@ def parse_args(args):
 
 def check_if_executable_exists(executable):
     try:
-        subprocess.run([executable, '--version'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run([executable, '--help'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     except FileNotFoundError:
         raise Exception(f'{executable} is not in the PATH. Please install it and try again.')
 
