@@ -109,7 +109,7 @@ def run_pipeline(gene, path_data, path_hhsuite_scripts, msa_len,
                  idCons_pair, pval, nbSpe, cov):
 
     check_if_executable_exists('hhmake')
-    check_if_executable_exists('hhmalign')
+    check_if_executable_exists('hhalign')
 
     print("START STEP 1 : pre-processing : convert .fasta to .a2m")
     bashCommand = f"step_01_preprocess --gene {gene} --dataPATH {path_data} --path_hhsuite_scripts {path_hhsuite_scripts} --len {msa_len}"
