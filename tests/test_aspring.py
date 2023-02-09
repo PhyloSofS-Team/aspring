@@ -12,7 +12,7 @@ def clean_up(request):
     test_dir = os.path.dirname(filename)
     path_data = os.path.join(test_dir, 'data')
     # show the files in the data folder
-    print("path_data :" os.listdir(path_data))
+    print("path_data :", os.listdir(path_data))
     path_gene = os.path.join(path_data, 'data')
     path_dupraw = os.path.join(path_data, 'DupRaw')
     yield path_gene, path_dupraw
