@@ -35,9 +35,12 @@ def setup_and_run_pipeline(request, clean_up):
     if os.path.isdir(path_diego):
         path_hhsuite_scripts = path_diego
     else:
-        # GitHUb action CI
-        CONDA = os.environ.get('CONDA')
-        path_hhsuite_scripts = os.path.join(CONDA, "/envs/test/scripts")
+    # GitHUb action CI
+        possible_paths = ['/usr/share/miniconda/envs/test/scripts', '/usr/local/miniconda/envs/test/scripts']
+        for path in possible_paths:
+            if os.path.isdir(path):
+                path_hhsuite_scripts = path
+                
     # show the content of the directory
     print(f"path_hhsuite_scripts : {path_hhsuite_scripts} : ",
           os.listdir(path_hhsuite_scripts))
