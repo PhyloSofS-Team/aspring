@@ -11,6 +11,8 @@ def clean_up(request):
     filename = request.module.__file__
     test_dir = os.path.dirname(filename)
     path_data = os.path.join(test_dir, 'data')
+    # show the files in the data folder
+    print("path_data :" os.listdir(path_data))
     path_gene = os.path.join(path_data, 'data')
     path_dupraw = os.path.join(path_data, 'DupRaw')
     yield path_gene, path_dupraw
@@ -30,21 +32,20 @@ def setup_and_run_pipeline(request, clean_up):
     path_gene = os.path.join(path_data, 'data', 'ENSG00000007866')
     path_ref = os.path.join(path_data, 'ENSG00000007866', 'ASPRING_reference')
 
-    # Local
-    path_diego = '/home/diego/bin/miniconda3/scripts'
-    if os.path.isdir(path_diego):
-        path_hhsuite_scripts = path_diego
-    else:
-    # GitHUb action CI
-        possible_paths = ['/usr/share/miniconda/envs/test/scripts', '/usr/local/miniconda/envs/test/scripts']
-        for path in possible_paths:
-            if os.path.isdir(path):
-                path_hhsuite_scripts = path
-                
-    # show the content of the directory
-    print(f"path_hhsuite_scripts : {path_hhsuite_scripts} : ",
-          os.listdir(path_hhsuite_scripts))
-
+    path_hhsuite_scripts = None
+    possible_paths = [
+        # Local
+        '/home/diego/bin/miniconda3/scripts',
+        # GitHUb action CI
+        '/usr/share/miniconda/envs/test/scripts', 
+        '/usr/local/miniconda/envs/test/scripts']
+    for path in possible_paths:
+        if os.path.isdir(path):
+            path_hhsuite_scripts = path
+            break
+    if path_hhsuite_scripts is None:
+        raise Exception('path_hhsuite_scripts is None: please set it manually to test aspring in your machine')
+    
     gene = 'ENSG00000007866'
     msa_len = 5
     msa_id_threshold = 100

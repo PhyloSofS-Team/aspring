@@ -75,9 +75,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v2
       - name: Install hhsuite
         shell: bash -el {0}
-        run: |
-          conda install -c conda-forge -c bioconda hhsuite
-          which hhalign
+        run: conda install -c conda-forge -c bioconda hhsuite
       - uses: actions/setup-python@v4
         id: setup-python
         with:
@@ -89,7 +87,6 @@ jobs:
         shell: bash -el {0}
         run: |
           echo $CONDA
-          hhalign --help
           pipx run --python '${{ steps.setup-python.outputs.python-path}}' tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}' -- -rFEx --durations 10 --color yes  # pytest args
       - name: Generate coverage report
         run: pipx run coverage lcov -o coverage.lcov
