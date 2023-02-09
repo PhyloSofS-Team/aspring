@@ -86,6 +86,7 @@ jobs:
         uses: actions/download-artifact@v3
         with: {name: python-distribution-files, path: dist/}
       - name: Run tests
+        shell: bash -el {0}
         run: >-
           pipx run --python '${{ steps.setup-python.outputs.python-path }}'
           tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}'
