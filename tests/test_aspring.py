@@ -13,9 +13,9 @@ def clean_up(request):
     path_data = os.path.join(test_dir, 'data')
     path_gene = os.path.join(path_data, 'data')
     path_dupraw = os.path.join(path_data, 'DupRaw')
-    yield path_gene, path_dupraw
-    os.path.isdir(path_gene) and shutil.rmtree(path_gene)
-    os.path.isdir(path_dupraw) and shutil.rmtree(path_dupraw)
+    # yield path_gene, path_dupraw
+    # os.path.isdir(path_gene) and shutil.rmtree(path_gene)
+    # os.path.isdir(path_dupraw) and shutil.rmtree(path_dupraw)
 
 
 @pytest.fixture(scope='module')
@@ -83,9 +83,9 @@ def test_instances(setup_and_run_pipeline):
     df_ref = pd.read_csv(ref, index_col=False)
 
     df_out_sorted = df_out[columns_to_compare].sort_values(
-        by=['instance', 'gene', 'size', 'NbSex'])
+        by=['instance', 'gene', 'size', 'NbSex']).reset_index(drop=True)
     df_ref_sorted = df_ref[columns_to_compare].sort_values(
-        by=['instance', 'gene', 'size', 'NbSex'])
+        by=['instance', 'gene', 'size', 'NbSex']).reset_index(drop=True)
 
     assert (df_out_sorted == df_ref_sorted).all().all()
 

@@ -1,6 +1,6 @@
 # test
-test/data/data
-test/data/DupRaw
+tests/data/data
+tests/data/DupRaw
 
 # Temporary and binary files
 *~

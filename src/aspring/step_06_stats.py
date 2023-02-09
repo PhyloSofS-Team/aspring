@@ -22,28 +22,33 @@ def test_rscript_availability():
         )
 
 
-def get_package_path():
-    aspring_path = os.path.dirname(os.path.abspath(__file__))
-    package_path = os.path.join(aspring_path, "..", "..")
-    return package_path
-
-
 def run_r_script(gene, path_data):
     test_rscript_availability()
-    package_path = get_package_path()
-    r_script_file = os.path.join(package_path, "src/aspring/R_script",
-                                 "step_06_getStats.R")
-    # Initialize the R environment
-    subprocess.run(
-        ["Rscript", "-e", "if (!require('renv')) install.packages('renv')"],
-        check=True)
-    subprocess.run(
-        ["Rscript", "-e", "renv::restore(project='" + package_path + "')"],
-        check=True)
+    aspring_path = os.path.dirname(os.path.abspath(__file__))
+    if '.tox' not in aspring_path:
+        package_path = os.path.abspath(os.path.join(aspring_path, "..", ".."))
+        r_script_file = os.path.join(package_path, "src/aspring/R_script",
+                                    "step_06_getStats.R")
+        # Initialize the R environment
+        subprocess.run(
+            ["Rscript", "-e", "if (!require('renv')) install.packages('renv')"],
+            check=True)
+        subprocess.run(
+            ["Rscript", "-e", "renv::restore(project='" + package_path + "')"],
+            check=True)
+    else:
+        r_script_file = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), 
+            "R_script", "step_06_getStats.R")
+
     # Run the R script
-    subprocess.run(
-        ["Rscript", r_script_file, "--gene", gene, "--path_data", path_data],
-        check=True)
+    try:
+        subprocess.run(
+            ["Rscript", r_script_file, "--gene", gene, "--path_data", path_data],
+            check=True)
+    except subprocess.CalledProcessError as err:
+        # reraise the exception with a more informative message
+        raise Exception("R script failed.") from err
 
 
 def parse_args(args):
