@@ -13,9 +13,9 @@ def clean_up(request):
     path_data = os.path.join(test_dir, 'data')
     path_gene = os.path.join(path_data, 'data')
     path_dupraw = os.path.join(path_data, 'DupRaw')
-    yield path_gene, path_dupraw
-    os.path.isdir(path_gene) and shutil.rmtree(path_gene)
-    os.path.isdir(path_dupraw) and shutil.rmtree(path_dupraw)
+    #yield path_gene, path_dupraw
+    #os.path.isdir(path_gene) and shutil.rmtree(path_gene)
+    #os.path.isdir(path_dupraw) and shutil.rmtree(path_dupraw)
 
 
 @pytest.fixture(scope='module')
