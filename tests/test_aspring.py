@@ -11,8 +11,6 @@ def clean_up(request):
     filename = request.module.__file__
     test_dir = os.path.dirname(filename)
     path_data = os.path.join(test_dir, 'data')
-    # show the files in the data folder
-    print("path_data :", os.listdir(path_data))
     path_gene = os.path.join(path_data, 'data')
     path_dupraw = os.path.join(path_data, 'DupRaw')
     yield path_gene, path_dupraw
@@ -60,6 +58,8 @@ def setup_and_run_pipeline(request, clean_up):
     run_pipeline(gene, path_data, path_hhsuite_scripts, msa_len,
                  msa_id_threshold, re_align, glo_loc, mact, id_pair,
                  idCons_pair, pval, nbSpe, cov)
+    # show the files in the data folder
+    print("path_gene :", os.listdir(path_gene))
 
     # return the paths to the created files
     return {
