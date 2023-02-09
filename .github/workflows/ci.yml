@@ -88,7 +88,9 @@ jobs:
       - name: Run tests
         shell: bash -el {0}
         run: >-
-          export PATH="$PATH:/usr/share/miniconda/envs/test/bin"; pipx run --python '${{ steps.setup-python.outputs.python-path }}'
+          export PATH="$PATH:/usr/share/miniconda/envs/test/bin"; hhalign
+          --help; pipx run --python '${{ steps.setup-python.outputs.python-path
+          }}'
           tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}'
           -- -rFEx --durations 10 --color yes  # pytest args
       - name: Generate coverage report
