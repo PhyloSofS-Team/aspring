@@ -1,10 +1,17 @@
-#library("RColorBrewer")
-#require("ggplot2")
+# test if seqinr and argparser are installed, if they are not, install them and
+# load them
+
+if(!require(seqinr)){
+	install.packages("seqinr", dependencies = TRUE, version = "4.2.16")
+}
+
+if(!require(argparser)){
+	install.packages("argparser", dependencies = TRUE, version = "0.7.1")
+}
+
 library("seqinr")
 library("argparser")
-#library("stringr")
-#library("dplyr")
-#library("gridExtra")
+
 # Create a parser
 p <- arg_parser("get variables given by main")
 # Add command line arguments
