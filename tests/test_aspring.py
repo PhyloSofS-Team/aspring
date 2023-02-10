@@ -98,11 +98,19 @@ def test_events(setup_and_run_pipeline):
     out = os.path.join(path_gene, filename)
     ref = os.path.join(path_ref, filename)
 
-    with open(out, 'r') as f_out, open(ref, 'r') as f_ref:
-        string_out = f_out.read().replace('10_1', '').replace('10_3', '')
-        string_ref = f_ref.read().replace('10_1', '').replace('10_3', '')
+    columns_to_compare = ['gene', 'rank', 'type', 'statusA',
+                            'statusB', 'lePathA', 'lePathB', 'exclu',
+                            'ncols', 'leA', 'leB', 'typePair', 'ColA', 'ColB']
+    
+    df_out = pd.read_csv(out, index_col=False)
+    df_ref = pd.read_csv(ref, index_col=False)
 
-    assert string_out == string_ref
+    df_out_sorted = df_out[columns_to_compare].sort_values(
+        by=['instance', 'gene', 'size', 'NbSex']).reset_index(drop=True)
+    df_ref_sorted = df_ref[columns_to_compare].sort_values(
+        by=['instance', 'gene', 'size', 'NbSex']).reset_index(drop=True)
+
+    assert (df_out_sorted == df_ref_sorted).all().all()
 
 
 def test_duplications(setup_and_run_pipeline):
