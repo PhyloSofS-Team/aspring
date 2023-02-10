@@ -105,10 +105,8 @@ def test_events(setup_and_run_pipeline):
     df_out = pd.read_csv(out, index_col=False)
     df_ref = pd.read_csv(ref, index_col=False)
 
-    df_out_sorted = df_out[columns_to_compare].sort_values(
-        by=['instance', 'gene', 'size', 'NbSex']).reset_index(drop=True)
-    df_ref_sorted = df_ref[columns_to_compare].sort_values(
-        by=['instance', 'gene', 'size', 'NbSex']).reset_index(drop=True)
+    df_out_sorted = df_out[columns_to_compare]
+    df_ref_sorted = df_ref[columns_to_compare]
 
     assert (df_out_sorted == df_ref_sorted).all().all()
 
