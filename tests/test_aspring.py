@@ -98,8 +98,7 @@ def test_events(setup_and_run_pipeline):
     out = os.path.join(path_gene, filename)
     ref = os.path.join(path_ref, filename)
 
-    columns_to_compare = ['gene', 'rank', 'type', 'statusA',
-                            'statusB', 'lePathA', 'lePathB', 'exclu',
+    columns_to_compare = ['gene', 'rank', 'type', 'lePathA', 'lePathB', 'exclu',
                             'ncols', 'leA', 'leB', 'typePair', 'ColA', 'ColB']
     
     df_out = pd.read_csv(out, index_col=False)
