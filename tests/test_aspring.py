@@ -20,10 +20,6 @@ def clean_up(request):
 
 @pytest.fixture(scope='module')
 def setup_and_run_pipeline(request, clean_up):
-    # example : python3 ASPRIN/scripts/withoutDB/main.py
-    # --path_data ~/lab_bench --path_hhsuite ~/hhsuite
-    # --gene ENSG00000107643 --len 5 --id 100 --norealign 1 --glo_loc 1
-    # --mact 0 --id_pair 50 --idCons_pair 50 --pval 0.001 --nbSpe 2 --cov 0.8
     filename = request.module.__file__
     test_dir = os.path.dirname(filename)
     path_data = os.path.join(test_dir, 'data')

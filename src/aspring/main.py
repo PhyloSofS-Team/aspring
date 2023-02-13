@@ -20,7 +20,7 @@ def parse_args(args):
     parser.add_argument('--path_data',
                         type=str,
                         required=True,
-                        help='path to dir containing Thoraxe outputs')
+                        help='path to dir containing ThorAxe outputs')
     parser.add_argument(
         '--path_hhsuite_scripts',
         type=str,
@@ -31,7 +31,7 @@ def parse_args(args):
         type=int,
         required=False,
         help=
-        'dont create profile for msa in which sequences are of length < X aa (def=5)',
+        "don't create profiles for msas in which sequences are of length < len aa (def=5)",
         default=5)
     parser.add_argument(
         '--id',
