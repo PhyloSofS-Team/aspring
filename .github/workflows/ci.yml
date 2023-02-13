@@ -72,7 +72,7 @@ jobs:
         shell: bash -el {0}
         run: |
           conda install -c conda-forge r-base=4.2.2
-          Rscript -e 'install.packages("renv")'
+          Rscript -e 'options(repos = c(CRAN = "https://cran.rstudio.com/")); install.packages("renv")'
           Rscript -e 'renv::restore(project="src/aspring/R_script")'
           Rscript -e 'renv::status()'
       - uses: actions/setup-python@v4
