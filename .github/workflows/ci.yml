@@ -70,10 +70,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: conda-incubator/setup-miniconda@v2
       - name: Setup R environment
-        with:
-          env:
-            R_LIBS_USER: "$GITHUB_WORKSPACE/R/library"
         run: |
+          export R_LIBS_USER="$GITHUB_WORKSPACE/R/library"
           Rscript -e 'install.packages("renv")'
           Rscript -e 'renv::restore(project="src/aspring/R_script")'
           Rscript -e 'renv::status()'
