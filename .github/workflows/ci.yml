@@ -124,6 +124,6 @@ jobs:
           # - https://pypi.org/help/#apitoken
           # - https://docs.github.com/en/actions/security-guides/encrypted-secrets
           TWINE_REPOSITORY: pypi
-          TWINE_USERNAME: __token__
+          TWINE_USERNAME: __TOKEN__
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
         run: pipx run tox -e publish
