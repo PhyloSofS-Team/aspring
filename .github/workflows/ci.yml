@@ -4,6 +4,9 @@
 
 name: tests
 
+env:
+  R_LIBS_USER: "$GITHUB_WORKSPACE/R/library"
+
 on:
   push:
     # Avoid using all the resources/limits available by checking only
