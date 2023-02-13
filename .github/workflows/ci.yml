@@ -4,9 +4,6 @@
 
 name: tests
 
-env:
-  R_LIBS_USER: "$GITHUB_WORKSPACE/R/library"
-
 on:
   push:
     # Avoid using all the resources/limits available by checking only
@@ -73,6 +70,9 @@ jobs:
       - uses: actions/checkout@v3
       - uses: conda-incubator/setup-miniconda@v2
       - name: Setup R environment
+        with:
+          env:
+            R_LIBS_USER: "$GITHUB_WORKSPACE/R/library"
         run: |
           Rscript -e 'install.packages("renv")'
           Rscript -e 'renv::restore(project="src/aspring/R_script")'
