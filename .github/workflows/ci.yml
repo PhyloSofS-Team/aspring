@@ -40,6 +40,8 @@ jobs:
           r-version: 4.2.2
       - name: Setup R environment
         uses: r-lib/actions/setup-renv@v2
+        with:
+          profile: '"src/aspring/R_script"'
       - name: Show renv environment
         run: Rscript -e 'renv::status()'
       - name: Build package distribution files

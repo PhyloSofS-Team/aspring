@@ -1,0 +1,15 @@
+# RENV files : 
+
+# Used to activate renv for new R sessions launched in the project.
+include src/aspring/R_script/.Rprofile
+# The lockfile, describing the state of your project’s library 
+# at some point in time.
+include src/aspring/R_script/renv.lock
+# The activation script run by the project .Rprofile.
+include src/aspring/R_script/renv/activate.R
+# Project settings – see ?settings for more details.
+include src/aspring/R_script/renv/settings.dcf
+
+# R script
+
+include src/aspring/R_script/step_06_getStats.R
