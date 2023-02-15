@@ -10,7 +10,7 @@ from aspring import __version__
 def parse_args(args):
     parser = argparse.ArgumentParser(
         description=
-        'STEP 1 : Reformat fasta to a2m for all s-exons of a chosen gene. Necessary step before running hmm_maker !!'
+        'STEP 1 : Reformat s-exons fasta files to a2m'
     )
     parser.add_argument('--gene',
                         dest='geneName',

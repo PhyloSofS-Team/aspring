@@ -10,7 +10,7 @@ from aspring import __version__
 def parse_args(args):
     parser = argparse.ArgumentParser(
         description=
-        'STEP 2 : From pre-proccessed ThorAxe outputs, create HMM profiles for all s-exons of a chosen gene. Pre-processing step of converting .fasta to .a2m is mandatory !'
+        'STEP 2 : Generates a Hidden Markov Model (HMM) profile for each s-exon.'
     )
     parser.add_argument('--gene',
                         dest='geneName',

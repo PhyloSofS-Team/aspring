@@ -59,17 +59,94 @@ The **ASPRING** package ships with a renv_ environment
 (located at `src/aspring/R_scripts`) that will be automatically executed, 
 so you do not need to worry about installing the **R** dependencies.
 
+Nomenclature
+============
+
+.. image:: _static/nomenclature_example.png
+   :alt: Image showing an ASRU composed by two ASPRs, one of them composed by multiple s-exons.
+
+The figure shows an example of an **Alternative Splicing Repetitive Unit**
+(**ASRU**) composed by two **Alternatively Spliced Pseudo Repeats** (**ASPRs**), 
+one of them composed by multiple **s-exons**.
+
+The nodes are the s-exons. The opaque red boxes are the ASPRs, and the
+transparent red box is the ASRU.
+
+The **ASPRs** are repetitive units identified by ASPRING that consist of one or more
+s-exons alternatively spliced in different isoforms. Note that ASPRs are called
+**instances** on the output tables.
+
+
 Outputs
 =======
 
 For a given `gene` (Ensembl Gene ID), ASPRING returns:
-
 
 - `{gene}_ASRUs_table.csv`
 - `{gene}_instances_table.csv`
 - `{gene}_duplication_pairs.csv`
 - `{gene}_eventsDup_withCols.txt`
 - `DupRaw/{gene}` folder containing the `s-exon_A.s-exon_B.hhr` files (HMM-HMM alignments) 
+
+{gene}_ASRUs_table.csv
+----------------------
+
+This table provides information on the Alternatively Spliced Repeat Units (ASRUs) detected for the given `gene`. Each row corresponds to a distinct ASRU and provides the following information:
+
+- `gene`: The Ensembl Gene ID for the given gene.
+- `ASRU`: The set of duplicated s-exons, a.k.a Alternatively Spliced Pseudo
+  Repeats (ASPRs) that belong to the ASRU.
+- `Nbinstances`: The number of Alternatively Spliced Pseudo
+  Repeats of the ASRU that were found in the exonic regions of the gene.
+- `max`: The length of the longest ASPR instance of the ASRU, in residues.
+- `min`: The length of the shortest ASPR instance of the ASRU, in residues.
+- `moy`: The mean length of the instances of the ASRU, in amino acid residues.
+- `median`: The median length of the instances of the ASRU, in residues.
+- `std`: The standard deviation of the lengths of the instances of the ASRU,
+  in amino acid residues.
+- `eventsRank`: The rank/position of the alternative splicing events involving
+  the ASRU in the `ases.csv` output table from ThorAxe — from the most to the
+  least conserved/frequent.
+
+## {gene}_instances_table.csv
+-----------------------------
+
+This table provides information on the instances of ASRUs detected for the given `gene`. Each row corresponds to a distinct instance and provides the following information:
+
+- `instance`: The sequence of the ASPR instance, in the form of a string of amino acid residues.
+- `size`: The length of the ASPR instance, in amino acid residues.
+- `NbSex`: The number of exonic regions where the ASPR instance was detected.
+- `ASRU`: The set of homologous/duplicated s-exons that belong to the ASRU to which the ASPR instance belongs.
+- `gene`: The Ensembl Gene ID for the given gene.
+ 
+
+
+Pipeline
+========
+
+ASPRING is a tool for detecting Alternative Splicing Repetitive Units (ASRUs) on
+a gene. The pipeline consists of nine steps, each of which can be executed
+separately, but it is recommended to run the main script ``aspring`` to execute
+the entire pipeline. Only steps 1, 2, and 3 require **HH-suite3** and step 6
+requires **R**. You can use the ``-h`` argument to show the arguments for each
+step.
+
+The pipeline steps are:
+
+1. ``step_01_preprocess``: Reformat s-exons fasta files to a2m.
+2. ``step_02_hmm_maker``: Generates a Hidden Markov Model (HMM) profile for each s-exon.
+3. ``step_03_hmm_aligner``: HMM-HMM alignment of all the s-exons combinations.
+4. ``step_04_gettable``: Parses the alignment files and creates a table.
+5. ``step_05_filter``: Filter the table to keep gene duplication pairs based on
+   identity, coverage, p-value and number of species in the MSAs.
+6. ``step_06_stats``: Generates statistics on the filtered duplicated regions.
+7. ``step_07_reformat``: Reformat the previous outputs to add the information about the duplicated regions.
+8. ``step_08_ASRUs``: Identifies the Alternative Splicing Repetitive Units (ASRUs) on the gene.
+9. ``step_09_clean``: Removes the intermediate files generated during the pipeline.
+
+Note that the main script ``aspring`` **runs the entire pipeline**
+automatically. However, the user can also execute the scripts of each pipeline
+step individually for more control over the pipeline.
 
 
 

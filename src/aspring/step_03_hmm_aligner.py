@@ -12,7 +12,7 @@ from aspring import __version__
 def parse_args(args):
     parser = argparse.ArgumentParser(
         description=
-        'STEP 3 : HMM-HMM profile alignment of all s-exons combinations for a chosen gene'
+        'STEP 3 : HMM-HMM alignment of all the s-exons combinations.'
     )
     parser.add_argument('--gene',
                         dest='geneName',

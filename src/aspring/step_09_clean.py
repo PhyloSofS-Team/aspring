@@ -1,6 +1,5 @@
 import os
 import glob
-import subprocess  # library to execute bash command line in python script
 import argparse
 import sys
 
@@ -10,7 +9,7 @@ from aspring import __version__
 def parse_args(args):
     parser = argparse.ArgumentParser(
         description=
-        'From Thoraxe outputs for a single query gene to its Alternative Splicing Repetitive Units'
+        'Removes the intermediate files generated during the pipeline.'
     )
     parser.add_argument('--gene',
                         dest='geneName',

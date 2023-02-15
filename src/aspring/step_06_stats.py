@@ -46,7 +46,8 @@ def run_r_script(gene, path_data):
 
 
 def parse_args(args):
-    parser = argparse.ArgumentParser(description="Get stats for a gene")
+    parser = argparse.ArgumentParser(
+        description="Generates statistics on the filtered duplicated regions.")
     parser.add_argument('--gene', required=True, help='Gene name')
     parser.add_argument('--path_data',
                         required=True,

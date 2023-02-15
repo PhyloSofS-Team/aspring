@@ -9,7 +9,7 @@ from aspring import __version__
 def parse_args(args):
     parser = argparse.ArgumentParser(
         description=
-        'Reformat fasta to a2m for all s-exons of a chosen gene. Necessary step before running hmm_maker !!'
+        'Reformat the previous outputs to add the information about the duplicated regions.'
     )
     parser.add_argument('--gene',
                         dest='geneName',

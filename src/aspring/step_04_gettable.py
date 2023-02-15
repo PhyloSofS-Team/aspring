@@ -159,7 +159,7 @@ def hhr2df(path, gene):
 def parse_args(args):
     parser = argparse.ArgumentParser(
         description=
-        'STEP 4 : post-processing : parse alignment files and create corresponding table'
+        'STEP 4 : Parses the alignment files and creates a table.'
     )
     parser.add_argument('--gene',
                         dest='geneName',

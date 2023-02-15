@@ -7,8 +7,7 @@ from aspring import __version__
 
 def parse_args(args):
     parser = argparse.ArgumentParser(
-        description=
-        'Reformat fasta to a2m for all s-exons of a chosen gene. Necessary step before running hmm_maker !!'
+        description='Filter the table to keep gene duplication pairs based on identity, coverage, p-value and number of species in the MSAs',
     )
     parser.add_argument('--gene',
                         dest='geneName',
