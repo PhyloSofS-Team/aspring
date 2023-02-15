@@ -91,7 +91,9 @@ For a given `gene` (Ensembl Gene ID), ASPRING returns:
 {gene}_ASRUs_table.csv
 ----------------------
 
-This table provides information on the Alternatively Spliced Repeat Units (ASRUs) detected for the given `gene`. Each row corresponds to a distinct ASRU and provides the following information:
+This table provides information on the Alternatively Spliced Repeat Units
+(ASRUs) detected for the given `gene`. Each row corresponds to a distinct ASRU
+and provides the following information:
 
 - `gene`: The Ensembl Gene ID for the given gene.
 - `ASRU`: The set of duplicated s-exons, a.k.a Alternatively Spliced Pseudo
@@ -108,10 +110,12 @@ This table provides information on the Alternatively Spliced Repeat Units (ASRUs
   the ASRU in the `ases.csv` output table from ThorAxe — from the most to the
   least conserved/frequent.
 
-## {gene}_instances_table.csv
------------------------------
+{gene}_instances_table.csv
+--------------------------
 
-This table provides information on the instances of ASRUs detected for the given `gene`. Each row corresponds to a distinct instance and provides the following information:
+This table provides information on the instances of ASRUs detected for the given
+`gene`. Each row corresponds to a distinct instance and provides the following
+information:
 
 - `instance`: The sequence of the ASPR instance, in the form of a string of amino acid residues.
 - `size`: The length of the ASPR instance, in amino acid residues.
@@ -119,6 +123,54 @@ This table provides information on the instances of ASRUs detected for the given
 - `ASRU`: The set of homologous/duplicated s-exons that belong to the ASRU to which the ASPR instance belongs.
 - `gene`: The Ensembl Gene ID for the given gene.
  
+{gene}_duplication_pairs.csv
+----------------------------
+
+This table provides information on the pairs of exonic regions that were
+involved in the duplication events. Each row corresponds to a distinct pair of
+s-exons and provides the following information:
+
+- `S_exon_Q`: The identifier of the first s-exon.
+- `S_exon_T`: The identifier of the second s-exon.
+- `Gene`: The Ensembl Gene ID for the given gene.
+- `Prob`: The probability score of the alignment of the exonic region pair.
+- `E-value`: The E-value associated with the alignment of the exonic region pair.
+- `P-value`: The P-value associated with the alignment of the exonic region pair.
+- `Score`: The alignment score of the alignment of the exonic region pair.
+- `Cols_Q`: The alignment columns corresponding to the first s-exon, in the format "start-end".
+- `Cols_T`: The alignment columns corresponding to the second s-exon, in the format "start-end".
+- `Length_Q`: The length of the first s-exon, in amino acid residues.
+- `Length_T`: The length of the second s-exon, in amino acid residues.
+- `Identities`: The percentage of identical residues in the alignment of the exonic region pair.
+- `IdCons`: The percentage of conserved residues in the alignment of the exonic region pair.
+- `Similarity`: The fraction of similar residues in the alignment of the exonic region pair.
+- `NoSpecies_Q`: The number of species in which the first s-exon is conserved.
+- `NoSpecies_T`: The number of species in which the second s-exon is conserved.
+
+{gene}_eventsDup_withCols.txt
+-----------------------------
+
+This table provides detailed information on the alternative splicing events in
+with the ASRUs are involved. Each row corresponds to a distinct event and 
+provides the following information:
+
+- `gene`: The Ensembl Gene ID for the given gene.
+- `sexA`: The index of the first s-exon in the ASRU.
+- `sexB`: The index of the second s-exon in the ASRU.
+- `rank`: The rank of the alternative splicing event, as ordered in the ThorAxe output table from the most to the least conserved/frequent.
+- `type`: The type of the alternative splicing events, e.g "alternative".
+- `statusA`: The status of the path with the first s-exon, which can be `alt`(ernative) or `can`onical.
+- `statusB`: The status of the path with the first s-exon, which can be `alt`(ernative) or `can`onical.
+- `lePathA`: Number of s-exons in the path with the first s-exon.
+- `lePathB`: Number of s-exons in the path with the second s-exon.
+- `exclu`: A boolean indicating whether the event involves mutually exclusive s-exons.
+- `pval`: The P-value associated with the alignment of the exonic region pair.
+- `ncols`: The number of columns in the alignment.
+- `leA`: The length of the first s-exon, in amino acid residues.
+- `leB`: The length of the second s-exon, in amino acid residues.
+- `typePair`: The type of the alternative splicing event.
+- `ColA`: The alignment columns corresponding to the first s-exon, in the format "start-end".
+- `ColB`: The alignment columns corresponding to the second s-exon, in the format "start-end".
 
 
 Pipeline
