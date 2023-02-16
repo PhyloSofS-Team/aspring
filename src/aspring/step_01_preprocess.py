@@ -6,8 +6,11 @@ import argparse
 
 from aspring import __version__
 
-
 def parse_args(args):
+    parser = get_arg_parser()
+    return parser.parse_args(args)
+
+def get_arg_parser():
     parser = argparse.ArgumentParser(
         description=
         'STEP 1 : Reformat s-exons fasta files to a2m'
@@ -38,7 +41,7 @@ def parse_args(args):
         action="version",
         version=f"aspring {__version__}",
     )
-    return parser.parse_args(args)
+    return parser
 
 
 def preprocess_msas(gene, path_data, path_hhsuite, msa_len):

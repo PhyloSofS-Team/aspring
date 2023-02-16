@@ -8,6 +8,10 @@ from aspring import __version__
 
 
 def parse_args(args):
+    parser = get_arg_parser()
+    return parser.parse_args(args)
+
+def get_arg_parser():
     parser = argparse.ArgumentParser(
         description=
         'STEP 2 : Generates a Hidden Markov Model (HMM) profile for each s-exon.'
@@ -35,7 +39,7 @@ def parse_args(args):
         action="version",
         version=f"aspring {__version__}",
     )
-    return parser.parse_args(args)
+    return parser
 
 
 def hmm_maker(gene, msa_id_threshold, path_data):

@@ -6,7 +6,6 @@ import pandas as pd
 
 from aspring import __version__
 
-
 def parse_args(args):
     parser = get_arg_parser()
     return parser.parse_args(args)

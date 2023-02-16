@@ -10,6 +10,10 @@ from aspring import __version__
 
 
 def parse_args(args):
+    parser = get_arg_parser()
+    return parser.parse_args(args)
+
+def get_arg_parser():
     parser = argparse.ArgumentParser(
         description=
         'STEP 3 : HMM-HMM alignment of all the s-exons combinations.'
@@ -56,7 +60,7 @@ def parse_args(args):
         action="version",
         version=f"aspring {__version__}",
     )
-    return parser.parse_args(args)
+    return parser
 
 
 def hmm_aligner(gene, msa_id_threshold, path_data, re_align,

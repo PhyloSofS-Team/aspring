@@ -44,8 +44,11 @@ def run_r_script(gene, path_data):
         # reraise the exception with a more informative message
         raise Exception("R script failed.") from err
 
-
 def parse_args(args):
+    parser = get_arg_parser()
+    return parser.parse_args(args)
+
+def get_arg_parser():
     parser = argparse.ArgumentParser(
         description="Generates statistics on the filtered duplicated regions.")
     parser.add_argument('--gene', required=True, help='Gene name')
@@ -55,7 +58,7 @@ def parse_args(args):
     parser.add_argument('--version',
                         action='version',
                         version=f"aspring {__version__}")
-    return parser.parse_args(args)
+    return parser
 
 
 def run():

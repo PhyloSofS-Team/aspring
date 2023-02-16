@@ -5,3 +5,4 @@ ASPRING
    :maxdepth: 4
 
    aspring
+   pipeline

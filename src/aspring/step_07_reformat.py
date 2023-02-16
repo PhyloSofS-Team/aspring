@@ -5,8 +5,11 @@ import numpy as np
 
 from aspring import __version__
 
-
 def parse_args(args):
+    parser = get_arg_parser()
+    return parser.parse_args(args)
+
+def get_arg_parser():
     parser = argparse.ArgumentParser(
         description=
         'Reformat the previous outputs to add the information about the duplicated regions.'
@@ -23,7 +26,7 @@ def parse_args(args):
     parser.add_argument('--version',
                         action='version',
                         version=f'aspring {__version__}')
-    return parser.parse_args(args)
+    return parser
 
 
 def reformate(gene, path_data):
