@@ -8,6 +8,10 @@ from aspring import __version__
 
 
 def parse_args(args):
+    parser = get_arg_parser()
+    return parser.parse_args(args)
+
+def get_arg_parser():
     parser = argparse.ArgumentParser(
         description=
         'From Thoraxe outputs for a single query gene to its Alternative Splicing Repetitive Units'
@@ -94,7 +98,7 @@ def parse_args(args):
     parser.add_argument('--version',
                         action='version',
                         version=f'aspring {__version__}')
-    return parser.parse_args(args)
+    return parser
 
 
 def check_if_executable_exists(executable):

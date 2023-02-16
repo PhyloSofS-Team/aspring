@@ -2,5 +2,4 @@ aspring
 =======
 
 .. argparse::
-   :ref: aspring.main.parse_args
-   :prog: aspring
+   :ref: aspring.main.get_arg_parser
