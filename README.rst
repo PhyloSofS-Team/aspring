@@ -71,7 +71,7 @@ dependencies.
 Nomenclature
 ============
 
-.. image:: _static/nomenclature_example.png
+.. image:: https://aspring.readthedocs.io/en/latest/_images/nomenclature_example.png
    :alt: Image showing an ASRU composed by two ASPRs, one of them composed by multiple s-exons.
 
 The figure shows an example of an **Alternative Splicing Repetitive Unit** (**ASRU**)
