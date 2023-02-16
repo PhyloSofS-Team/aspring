@@ -28,5 +28,3 @@ Indices and tables
 * :ref:`search`
 
 .. _toctree: https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html
-.. _ThorAxe documentation: https://phylosofs-team.github.io/thoraxe/
-.. _Ases web server: http://www.lcqb.upmc.fr/Ases

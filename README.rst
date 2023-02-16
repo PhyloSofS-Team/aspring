@@ -259,3 +259,5 @@ PyScaffold see https://pyscaffold.org/.
 
 .. _miniconda: https://docs.conda.io/en/latest/miniconda.html
 .. _renv: https://rstudio.github.io/renv/articles/renv.html
+.. _ThorAxe documentation: https://phylosofs-team.github.io/thoraxe/
+.. _Ases web server: http://www.lcqb.upmc.fr/Ases
