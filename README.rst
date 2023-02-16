@@ -27,6 +27,18 @@ isoforms. You can run aspring through the command line to find duplication event
 exonic regions. This tool will provide information on the duplicated regions through a
 couple of tables.
 
+.. note:: 
+
+    **ASPRING** requires **ThorAxe outputs** for a single query gene to run. If you don't
+    have ThorAxe outputs, you can visit the `ThorAxe documentation`_ to learn how to install
+    and run ThorAxe on your data. ThorAxe can also be run using the `Ases web server`_,
+    which provides a user-friendly interface for running ThorAxe online. Note that you can
+    skip the PhyloSofS step of Ases to obtain results more quickly for use with `aspring`.
+    Once you have ThorAxe outputs, you can use `aspring` to identify ASRUs for your query
+    gene.
+
+
+
 Requirements
 ============
 
