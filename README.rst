@@ -230,10 +230,10 @@ information:
 - `rank`: The rank of the alternative splicing event, as ordered in the ThorAxe output table
   from the most to the least conserved/frequent.
 - `type`: The type of the alternative splicing events, e.g "alternative".
-- `statusA`: The status of the path with the first s-exon, which can be `alt`(ernative) or
-  `can`onical.
-- `statusB`: The status of the path with the first s-exon, which can be `alt`(ernative) or
-  `can`onical.
+- `statusA`: The status of the path with the first s-exon, which can be alternative or
+  canonical.
+- `statusB`: The status of the path with the first s-exon, which can be alternative or
+  canonical.
 - `lePathA`: Number of s-exons in the path with the first s-exon.
 - `lePathB`: Number of s-exons in the path with the second s-exon.
 - `exclu`: A boolean indicating whether the event involves mutually exclusive s-exons.
