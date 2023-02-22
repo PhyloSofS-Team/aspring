@@ -1,4 +1,4 @@
-.. image:: https://aspring.readthedocs.io/en/latest/_images/dall_e_banner.png
+.. image:: https://drive.google.com/file/d/1sqmZdhO5ZCdr3oj5XOKPcr1sGzhW1ZvZ
     :alt: A marguerite and a bolt of lightning and their reflection on a water surface (created using DALL·E 2)
 
 
