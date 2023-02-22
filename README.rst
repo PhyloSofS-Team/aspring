@@ -1,17 +1,3 @@
-.. image:: https://drive.google.com/file/d/1sqmZdhO5ZCdr3oj5XOKPcr1sGzhW1ZvZ
-    :alt: A marguerite and a bolt of lightning and their reflection on a water surface (created using DALL·E 2)
-
-
-
-=================
-🌼 **ASPRING** 🌼
-=================
-
-
-*Alternatively Spliced Pseudo Repeat IN-Gene*
-
-
-
 .. image:: https://readthedocs.org/projects/aspring/badge/?version=latest
     :alt: ReadTheDocs
     :target: https://aspring.readthedocs.io/en/stable/
@@ -25,6 +11,13 @@
     :alt: Project generated with PyScaffold
     :target: https://pyscaffold.org/
 
+
+=================
+🌼 **ASPRING** 🌼
+=================
+
+
+*Alternatively Spliced Pseudo Repeat IN-Gene*
 
 
 **ASPRING** is a computational tool for detecting Alternative Splicing Repetitive Units
