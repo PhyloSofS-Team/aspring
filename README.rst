@@ -75,7 +75,7 @@ Nomenclature
 ============
 
 .. image:: https://raw.githubusercontent.com/PhyloSofS-Team/aspring/main/docs/_static/nomenclature_example.png
-    ::alt: ASPRING nomenclature explained using a ThorAxe Evolutionary Splicing Graph (ESG). The image shows an ASRU composed by two ASPRs, one of them composed by multiple s-exons.
+  :alt: ASPRING nomenclature explained using a ThorAxe Evolutionary Splicing Graph (ESG). The image shows an ASRU composed by two ASPRs, one of them composed by multiple s-exons.
 
 The figure shows an example of an **Alternative Splicing Repetitive Unit** (**ASRU**)
 composed by two **Alternatively Spliced Pseudo Repeats** (**ASPRs**), one of them composed
