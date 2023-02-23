@@ -36,8 +36,8 @@ couple of tables.
     have ThorAxe outputs, you can visit the `ThorAxe documentation`_ to learn how to install
     and run ThorAxe on your data. ThorAxe can also be run using the `Ases web server`_,
     which provides a user-friendly interface for running ThorAxe online. Note that you can
-    skip the PhyloSofS step of Ases to obtain results more quickly for use with `aspring`.
-    Once you have ThorAxe outputs, you can use `aspring` to identify ASRUs for your query
+    skip the PhyloSofS step of Ases to obtain results more quickly for use with ``aspring``.
+    Once you have ThorAxe outputs, you can use ``aspring`` to identify ASRUs for your query
     gene.
 
 
@@ -46,8 +46,8 @@ Requirements
 ============
 
 **ASPRING** is a Python package that can be installed from PyPI using the pip package
-manager. Its pipeline uses **R** and the **HH-suite3**. In particular, `Rscript` from **R**
-and `hhmake` and `hhalign` from **HH-suite3** must be in the `PATH`. 
+manager. Its pipeline uses **R** and the **HH-suite3**. In particular, ``Rscript`` from **R**
+and ``hhmake`` and ``hhalign`` from **HH-suite3** must be in the ``PATH``. 
 
 You can see the installation instructions for both in the following links:
 
@@ -63,11 +63,11 @@ For example:
     r-base=4.2.2
 
 Also, you will need to know the path where the **HH-suite3** scripts are installed, as
-**ASPRING** needs to access `reformat.pl`. If you installed **HH-suite3** using the base
+**ASPRING** needs to access ``reformat.pl``. If you installed **HH-suite3** using the base
 environment miniconda_ on a Linux, then the path will be something like
 `~/miniconda3/scripts`.
 
-The **ASPRING** package ships with a renv_ environment (located at `src/aspring/R_scripts`)
+The **ASPRING** package ships with a renv_ environment (located at ``src/aspring/R_scripts``)
 that will be automatically executed, so you do not need to worry about installing the **R**
 dependencies.
 
@@ -91,7 +91,7 @@ output tables.
 How to use aspring
 ==================
 
-`aspring`` is a Python-based command-line tool that helps identify Alternative Splicing
+``aspring`` is a Python-based command-line tool that helps identify Alternative Splicing
 Repetitive Units (ASRUs) from Thoraxe outputs for a single query gene. The tool executes
 several steps that involve converting data, creating HMM profiles, aligning profiles,
 parsing and filtering alignments, and generating ASRUs and Alternatively Spliced Pseudo
@@ -106,17 +106,17 @@ Here is how to run the script after installing the package:
 
        aspring --gene GENE_NAME --path_data PATH_TO_THORAXE_OUTPUTS --path_hhsuite_scripts PATH_TO_HHSUITE_SCRIPTS
 
-   To query a specific gene, replace `GENE_NAME` with the corresponding Ensemble
-   ID. If ThorAxe outputs are in the current working directory, `--path_data`
-   parameter can be avoided. In case the `reformat.pl` script from the HH-suite3
-   is in the path indicated by the `HHSUITE_SCRIPTS` environment variable, 
-   `--path_hhsuite_scripts` parameter can be omitted.
-   Otherwise, replace `PATH_TO_HHSUITE_SCRIPTS` with the
-   path to the `reformat.pl` script directory. Replace `PATH_TO_THORAXE_OUTPUTS`
+   To query a specific gene, replace ``GENE_NAME`` with the corresponding Ensemble
+   ID. If ThorAxe outputs are in the current working directory, ``--path_data``
+   parameter can be avoided. In case the ``reformat.pl`` script from the HH-suite3
+   is in the path indicated by the ``HHSUITE_SCRIPTS`` environment variable, 
+   ``--path_hhsuite_scripts`` parameter can be omitted.
+   Otherwise, replace ``PATH_TO_HHSUITE_SCRIPTS`` with the
+   path to the ``reformat.pl`` script directory. Replace ``PATH_TO_THORAXE_OUTPUTS``
    with the path to the ThorAxe outputs directory for the gene of  interest.
 
    Optional arguments are available to customize the behavior of the script. Run the command
-   `aspring --help` to see the full list of options.
+   ``aspring --help`` to see the full list of options.
 
 The script will execute several steps and generate output files containing ASRU and
 ASPR tables for the query gene.
@@ -127,33 +127,33 @@ Docker
 
 To ease the use and installation of ASPRING, we have created a Docker image that
 you can easily download and run. The aspring Docker image is available on
-`Docker Hub`_. To run the `aspring`` tool using the Docker image, you must have 
+`Docker Hub`_. To run the ``aspring`` tool using the Docker image, you must have 
 Docker installed on your system. You can download and install **Docker** from the 
-`official website`_. Once Docker is installed, you can run `aspring` using the 
+`official website`_. Once Docker is installed, you can run ``aspring`` using the 
 following command:
 
 .. code-block:: shell
   sudo docker run --mount type=bind,source=$(pwd),target=/data diegozea/aspring aspring --gene GENE_NAME
 
-In this command, we use the `docker run` command to run `aspring`. We are
-mounting the current working directory using the `--mount` option, which is
-necessary for providing access to the data files required by `aspring`. The
-`--mount` option takes two parameters: `type` and `source`. `type` specifies 
-the type of mount to use. In this case, we use a `bind` mount, which allows us 
+In this command, we use the ``docker run`` command to run ``aspring``. We are
+mounting the current working directory using the ``--mount`` option, which is
+necessary for providing access to the data files required by ``aspring``. The
+``--mount`` option takes two parameters: ``type`` and ``source``. ``type`` specifies 
+the type of mount to use. In this case, we use a ``bind`` mount, which allows us 
 to mount a directory from the host system to the container; that is a
-**requirement** to enable `aspring` to see the input files and to let it save
-the output files in your filesystem. `source` specifies the source directory to
-mount. In this case, we use `$(pwd)` to select the current working directory as
-the source. We are also specifying the `target` directory as `/data` in the
+**requirement** to enable ``aspring`` to see the input files and to let it save
+the output files in your filesystem. ``source`` specifies the source directory to
+mount. In this case, we use ``$(pwd)`` to select the current working directory as
+the source. We are also specifying the ``target`` directory as ``/data`` in the
 container. This means that the files from the current working directory on the
-host system will be available in the `/data` directory in the container.
+host system will be available in the ``/data`` directory in the container.
 
 The aspring tool requires **R** and the **HH-suite3**, which are already
 installed in the Docker image. Therefore, there is no need to specify
-`--path_hhsuite_scripts` or `--path_data`; the last one is set to `/data` by
+``--path_hhsuite_scripts`` or ``--path_data``; the last one is set to ``/data`` by
 default.
 
-Finally, we specify the `--gene` option with `GENE_NAME` to run aspring on that gene.
+Finally, we specify the ``--gene`` option with ``GENE_NAME`` to run aspring on that gene.
 
 
 Pipeline
@@ -188,48 +188,48 @@ over the pipeline.
 Outputs
 =======
 
-For a given `gene` (Ensembl Gene ID), ASPRING returns:
+For a given ``gene`` (Ensembl Gene ID), ASPRING returns:
 
-- `{gene}_ASRUs_table.csv`
-- `{gene}_instances_table.csv`
-- `{gene}_duplication_pairs.csv`
-- `{gene}_eventsDup_withCols.txt`
-- `DupRaw/{gene}` folder containing the `s-exon_A.s-exon_B.hhr` files (HMM-HMM alignments) 
+- ``{gene}_ASRUs_table.csv``
+- ``{gene}_instances_table.csv``
+- ``{gene}_duplication_pairs.csv``
+- ``{gene}_eventsDup_withCols.txt``
+- ``DupRaw/{gene}`` folder containing the ``s-exon_A.s-exon_B.hhr`` files (HMM-HMM alignments) 
 
 {gene}_ASRUs_table.csv
 ----------------------
 
 This table provides information on the Alternatively Spliced Repeat Units (ASRUs) detected
-for the given `gene`. Each row corresponds to a distinct ASRU and provides the following
+for the given ``gene``. Each row corresponds to a distinct ASRU and provides the following
 information:
 
-- `gene`: The Ensembl Gene ID for the given gene.
-- `ASRU`: The set of duplicated s-exons, a.k.a Alternatively Spliced Pseudo Repeats (ASPRs)
+- ``gene``: The Ensembl Gene ID for the given gene.
+- ``ASRU``: The set of duplicated s-exons, a.k.a Alternatively Spliced Pseudo Repeats (ASPRs)
   that belong to the ASRU.
-- `Nbinstances`: The number of Alternatively Spliced Pseudo Repeats of the ASRU that were
+- ``Nbinstances``: The number of Alternatively Spliced Pseudo Repeats of the ASRU that were
   found in the exonic regions of the gene.
-- `max`: The length of the longest ASPR instance of the ASRU, in residues.
-- `min`: The length of the shortest ASPR instance of the ASRU, in residues.
-- `moy`: The mean length of the instances of the ASRU, in amino acid residues.
-- `median`: The median length of the instances of the ASRU, in residues.
-- `std`: The standard deviation of the lengths of the instances of the ASRU, in amino acid
+- ``max``: The length of the longest ASPR instance of the ASRU, in residues.
+- ``min``: The length of the shortest ASPR instance of the ASRU, in residues.
+- ``moy``: The mean length of the instances of the ASRU, in amino acid residues.
+- ``median``: The median length of the instances of the ASRU, in residues.
+- ``std``: The standard deviation of the lengths of the instances of the ASRU, in amino acid
   residues.
-- `eventsRank`: The rank/position of the alternative splicing events involving the ASRU in
-  the `ases.csv` output table from ThorAxe — from the most to the least conserved/frequent.
+- ``eventsRank``: The rank/position of the alternative splicing events involving the ASRU in
+  the ``ases.csv`` output table from ThorAxe — from the most to the least conserved/frequent.
 
 {gene}_instances_table.csv
 --------------------------
 
-This table provides information on the instances of ASRUs detected for the given `gene`.
+This table provides information on the instances of ASRUs detected for the given ``gene``.
 Each row corresponds to a distinct instance and provides the following information:
 
-- `instance`: The sequence of the ASPR instance, in the form of a string of amino acid
+- ``instance``: The sequence of the ASPR instance, in the form of a string of amino acid
   residues.
-- `size`: The length of the ASPR instance, in amino acid residues.
-- `NbSex`: The number of exonic regions where the ASPR instance was detected.
-- `ASRU`: The set of homologous/duplicated s-exons that belong to the ASRU to which the ASPR
+- ``size``: The length of the ASPR instance, in amino acid residues.
+- ``NbSex``: The number of exonic regions where the ASPR instance was detected.
+- ``ASRU``: The set of homologous/duplicated s-exons that belong to the ASRU to which the ASPR
   instance belongs.
-- `gene`: The Ensembl Gene ID for the given gene.
+- ``gene``: The Ensembl Gene ID for the given gene.
  
 {gene}_duplication_pairs.csv
 ----------------------------
@@ -238,25 +238,25 @@ This table provides information on the pairs of exonic regions that were involve
 duplication events. Each row corresponds to a distinct pair of s-exons and provides the
 following information:
 
-- `S_exon_Q`: The identifier of the first s-exon.
-- `S_exon_T`: The identifier of the second s-exon.
-- `Gene`: The Ensembl Gene ID for the given gene.
-- `Prob`: The probability score of the alignment of the exonic region pair.
-- `E-value`: The E-value associated with the alignment of the exonic region pair.
-- `P-value`: The P-value associated with the alignment of the exonic region pair.
-- `Score`: The alignment score of the alignment of the exonic region pair.
-- `Cols_Q`: The alignment columns corresponding to the first s-exon, in the format
+- ``S_exon_Q``: The identifier of the first s-exon.
+- ``S_exon_T``: The identifier of the second s-exon.
+- ``Gene``: The Ensembl Gene ID for the given gene.
+- ``Prob``: The probability score of the alignment of the exonic region pair.
+- ``E-value``: The E-value associated with the alignment of the exonic region pair.
+- ``P-value``: The P-value associated with the alignment of the exonic region pair.
+- ``Score``: The alignment score of the alignment of the exonic region pair.
+- ``Cols_Q``: The alignment columns corresponding to the first s-exon, in the format
   "start-end".
-- `Cols_T`: The alignment columns corresponding to the second s-exon, in the format
+- ``Cols_T``: The alignment columns corresponding to the second s-exon, in the format
   "start-end".
-- `Length_Q`: The length of the first s-exon, in amino acid residues.
-- `Length_T`: The length of the second s-exon, in amino acid residues.
-- `Identities`: The percentage of identical residues in the alignment of the exonic region
+- ``Length_Q``: The length of the first s-exon, in amino acid residues.
+- ``Length_T``: The length of the second s-exon, in amino acid residues.
+- ``Identities``: The percentage of identical residues in the alignment of the exonic region
   pair.
-- `IdCons`: The percentage of conserved residues in the alignment of the exonic region pair.
-- `Similarity`: The fraction of similar residues in the alignment of the exonic region pair.
-- `NoSpecies_Q`: The number of species in which the first s-exon is conserved.
-- `NoSpecies_T`: The number of species in which the second s-exon is conserved.
+- ``IdCons``: The percentage of conserved residues in the alignment of the exonic region pair.
+- ``Similarity``: The fraction of similar residues in the alignment of the exonic region pair.
+- ``NoSpecies_Q``: The number of species in which the first s-exon is conserved.
+- ``NoSpecies_T``: The number of species in which the second s-exon is conserved.
 
 {gene}_eventsDup_withCols.txt
 -----------------------------
@@ -265,27 +265,27 @@ This table provides detailed information on the alternative splicing events in w
 ASRUs are involved. Each row corresponds to a distinct event and provides the following
 information:
 
-- `gene`: The Ensembl Gene ID for the given gene.
-- `sexA`: The index of the first s-exon in the ASRU.
-- `sexB`: The index of the second s-exon in the ASRU.
-- `rank`: The rank of the alternative splicing event, as ordered in the ThorAxe output table
+- ``gene``: The Ensembl Gene ID for the given gene.
+- ``sexA``: The index of the first s-exon in the ASRU.
+- ``sexB``: The index of the second s-exon in the ASRU.
+- ``rank``: The rank of the alternative splicing event, as ordered in the ThorAxe output table
   from the most to the least conserved/frequent.
-- `type`: The type of the alternative splicing events, e.g "alternative".
-- `statusA`: The status of the path with the first s-exon, which can be alternative or
+- ``type``: The type of the alternative splicing events, e.g "alternative".
+- ``statusA``: The status of the path with the first s-exon, which can be alternative or
   canonical.
-- `statusB`: The status of the path with the first s-exon, which can be alternative or
+- ``statusB``: The status of the path with the first s-exon, which can be alternative or
   canonical.
-- `lePathA`: Number of s-exons in the path with the first s-exon.
-- `lePathB`: Number of s-exons in the path with the second s-exon.
-- `exclu`: A boolean indicating whether the event involves mutually exclusive s-exons.
-- `pval`: The P-value associated with the alignment of the exonic region pair.
-- `ncols`: The number of columns in the alignment.
-- `leA`: The length of the first s-exon, in amino acid residues.
-- `leB`: The length of the second s-exon, in amino acid residues.
-- `typePair`: The type of the alternative splicing event.
-- `ColA`: The alignment columns corresponding to the first s-exon, in the format
+- ``lePathA``: Number of s-exons in the path with the first s-exon.
+- ``lePathB``: Number of s-exons in the path with the second s-exon.
+- ``exclu``: A boolean indicating whether the event involves mutually exclusive s-exons.
+- ``pval``: The P-value associated with the alignment of the exonic region pair.
+- ``ncols``: The number of columns in the alignment.
+- ``leA``: The length of the first s-exon, in amino acid residues.
+- ``leB``: The length of the second s-exon, in amino acid residues.
+- ``typePair``: The type of the alternative splicing event.
+- ``ColA``: The alignment columns corresponding to the first s-exon, in the format
   "start-end".
-- `ColB`: The alignment columns corresponding to the second s-exon, in the format
+- ``ColB``: The alignment columns corresponding to the second s-exon, in the format
   "start-end".
 
 
