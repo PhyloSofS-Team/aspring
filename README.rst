@@ -7,6 +7,9 @@
 .. image:: https://img.shields.io/pypi/v/aspring.svg
     :alt: PyPI-Server
     :target: https://pypi.org/project/aspring/
+.. image:: https://img.shields.io/docker/v/diegozea/aspring?label=docker
+    :alt: Docker
+    :target: https://hub.docker.com/r/diegozea/aspring
 .. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
     :alt: Project generated with PyScaffold
     :target: https://pyscaffold.org/
@@ -103,16 +106,54 @@ Here is how to run the script after installing the package:
 
        aspring --gene GENE_NAME --path_data PATH_TO_THORAXE_OUTPUTS --path_hhsuite_scripts PATH_TO_HHSUITE_SCRIPTS
 
-   Replace `GENE_NAME` with the name of the Ensemble ID of the queried gene. Replace
-   `PATH_TO_THORAXE_OUTPUTS` with the path to the directory containing ThorAxe outputs for
-   that gene. Replace `PATH_TO_HHSUITE_SCRIPTS` with the path to the folder containing the
-   `reformat.pl` script from the HH-suite3.
+   To query a specific gene, replace `GENE_NAME` with the corresponding Ensemble
+   ID. If ThorAxe outputs are in the current working directory, `--path_data`
+   parameter can be avoided. In case the `reformat.pl` script from the HH-suite3
+   is in the path indicated by the `HHSUITE_SCRIPTS` environment variable, 
+   `--path_hhsuite_scripts` parameter can be omitted.
+   Otherwise, replace `PATH_TO_HHSUITE_SCRIPTS` with the
+   path to the `reformat.pl` script directory. Replace `PATH_TO_THORAXE_OUTPUTS`
+   with the path to the ThorAxe outputs directory for the gene of  interest.
 
    Optional arguments are available to customize the behavior of the script. Run the command
    `aspring --help` to see the full list of options.
 
 The script will execute several steps and generate output files containing ASRU and
 ASPR tables for the query gene.
+
+
+Docker
+------
+
+To ease the use and installation of ASPRING, we have created a Docker image that
+you can easily download and run. The aspring Docker image is available on
+`Docker Hub`_. To run the `aspring`` tool using the Docker image, you must have 
+Docker installed on your system. You can download and install **Docker** from the 
+`official website`_. Once Docker is installed, you can run `aspring` using the 
+following command:
+
+.. code-block:: shell
+  sudo docker run --mount type=bind,source=$(pwd),target=/data diegozea/aspring aspring --gene GENE_NAME
+
+In this command, we use the `docker run` command to run `aspring`. We are
+mounting the current working directory using the `--mount` option, which is
+necessary for providing access to the data files required by `aspring`. The
+`--mount` option takes two parameters: `type` and `source`. `type` specifies 
+the type of mount to use. In this case, we use a `bind` mount, which allows us 
+to mount a directory from the host system to the container; that is a
+**requirement** to enable `aspring` to see the input files and to let it save
+the output files in your filesystem. `source` specifies the source directory to
+mount. In this case, we use `$(pwd)` to select the current working directory as
+the source. We are also specifying the `target` directory as `/data` in the
+container. This means that the files from the current working directory on the
+host system will be available in the `/data` directory in the container.
+
+The aspring tool requires **R** and the **HH-suite3**, which are already
+installed in the Docker image. Therefore, there is no need to specify
+`--path_hhsuite_scripts` or `--path_data`; the last one is set to `/data` by
+default.
+
+Finally, we specify the `--gene` option with `GENE_NAME` to run aspring on that gene.
 
 
 Pipeline
@@ -261,3 +302,5 @@ PyScaffold see https://pyscaffold.org/.
 .. _renv: https://rstudio.github.io/renv/articles/renv.html
 .. _ThorAxe documentation: https://phylosofs-team.github.io/thoraxe/
 .. _Ases web server: http://www.lcqb.upmc.fr/Ases
+.. _Docker Hub: https://hub.docker.com/r/diegozea/aspring
+.. _official website: https://www.docker.com/
