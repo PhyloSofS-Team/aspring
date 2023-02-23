@@ -50,21 +50,21 @@ def get_arg_parser():
         required=False,
         help=
         'bool, 1 if norealign else 0, do NOT realign displayed hits with Maximum Accuracy algorithm (MAC) (default: %(default)s)',
-        default=0)
+        default=1)
     parser.add_argument(
         '--glo_loc',
         type=int,
         required=False,
         help=
         'bool, 1 if global else 0, use global/local alignment mode for searching/ranking (default: %(default)s)',
-        default=0)
+        default=1)
     parser.add_argument(
         '--mact',
         type=float,
         required=False,
         help=
         '[0.0,1.0] posterior prob threshold for MAC realignment controlling greediness at alignment ends: 0:global >0.1:local (default: %(default)s)',
-        default=0.35)
+        default=0.0)
     parser.add_argument(
         '--id_pair',
         type=float,
