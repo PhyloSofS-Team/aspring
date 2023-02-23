@@ -57,7 +57,7 @@ You can see the installation instructions for both in the following links:
 If you have miniconda_ installed, you can use it to install both **HH-suite3** and **R**.
 For example:
 
-.. code-block:: shell
+.. code-block:: bash
 
     conda install -c conda-forge -c bioconda hhsuite conda install -c conda-forge
     r-base=4.2.2
@@ -132,7 +132,8 @@ Docker installed on your system. You can download and install **Docker** from th
 `official website`_. Once Docker is installed, you can run ``aspring`` using the 
 following command:
 
-.. code-block:: shell
+.. code-block:: bash
+
   sudo docker run --mount type=bind,source=$(pwd),target=/data diegozea/aspring aspring --gene GENE_NAME
 
 In this command, we use the ``docker run`` command to run ``aspring``. We are
