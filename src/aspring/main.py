@@ -22,77 +22,84 @@ def get_arg_parser():
                         help='name of queried gene')
     parser.add_argument('--path_data',
                         type=str,
-                        required=True,
-                        help='path to dir containing ThorAxe outputs')
+                        required=False,
+                        help='path to dir containing ThorAxe outputs (default: %(default)s)',
+                        default=os.getcwd())
     parser.add_argument(
         '--path_hhsuite_scripts',
         type=str,
-        required=True,
-        help='path to the folder containing the scripts of hhsuite')
+        required=False,
+        help='path to the folder containing the scripts of hhsuite, by default it uses the value of the environment variable HHSUITE_SCRIPTS if it exists',
+        default=os.environ.get('HHSUITE_SCRIPTS', ''))  # default value is empty string
     parser.add_argument(
         '--len',
         type=int,
         required=False,
         help=
-        "don't create profiles for msas in which sequences are of length < len aa (def=5)",
+        "don't create profiles for msas in which sequences are of length < len aa (default: %(default)s)",
         default=5)
     parser.add_argument(
         '--id',
         type=float,
         required=False,
-        help='[0,100] maximum pairwise sequence identity (%%) (def=100)',
-        default=100)
+        help='[0.0,100.0] maximum pairwise sequence identity (%%) (default: %(default)s)',
+        default=100.0)
     parser.add_argument(
         '--norealign',
         type=int,
-        required=True,
+        required=False,
         help=
-        'bool, 1 if norealign else 0, do NOT realign displayed hits with Maximum Accuracy algorithm (MAC) (def=0)',
+        'bool, 1 if norealign else 0, do NOT realign displayed hits with Maximum Accuracy algorithm (MAC) (default: %(default)s)',
         default=0)
     parser.add_argument(
         '--glo_loc',
         type=int,
-        required=True,
+        required=False,
         help=
-        'bool, 1 if global else 0, use global/local alignment mode for searching/ranking (def=local)',
+        'bool, 1 if global else 0, use global/local alignment mode for searching/ranking (default: %(default)s)',
         default=0)
     parser.add_argument(
         '--mact',
         type=float,
-        required=True,
+        required=False,
         help=
-        '[0,1[ posterior prob threshold for MAC realignment controlling greediness at alignment ends: 0:global >0.1:local (default=0.35)',
+        '[0.0,1.0] posterior prob threshold for MAC realignment controlling greediness at alignment ends: 0:global >0.1:local (default: %(default)s)',
         default=0.35)
     parser.add_argument(
         '--id_pair',
         type=float,
-        required=True,
+        required=False,
         help=
-        '[0,100] Identity percentage threshold between first sequence in msa of s-exon for each s-exon in a pair'
+        '[0.0,100.0] Identity percentage threshold between first sequence in msa of s-exon for each s-exon in a pair (default: %(default)s)',
+        default=50.0
     )
     parser.add_argument(
         '--idCons_pair',
         type=float,
-        required=True,
+        required=False,
         help=
-        '[0,100] Identity percentage threshold between consensus sequence of msa of s-exon for each s-exon in a pair (should be equal to id_pair)'
+        '[0.0,100.0] Identity percentage threshold between consensus sequence of msa of s-exon for each s-exon in a pair (should be equal to id_pair) (default: %(default)s)',
+        default=50.0
     )
     parser.add_argument(
         '--pval',
         type=float,
-        required=True,
-        help='[0,1] p-value threshold for HMM-HMM alignment of a s-exons pair')
+        required=False,
+        help='[0.0,1.0] p-value threshold for HMM-HMM alignment of a s-exons pair  (default: %(default)s)',
+        default=0.001)
     parser.add_argument(
         '--nbSpe',
-        type=float,
-        required=True,
-        help='[1,10] minimum number of species in msa for s-exons in the pair')
+        type=int,
+        required=False,
+        help='[1,10] minimum number of species in msa for s-exons in the pair  (default: %(default)s)',
+        default=2)
     parser.add_argument(
         '--cov',
         type=float,
-        required=True,
+        required=False,
         help=
-        '[0,1] Threshold for coverage of s-exon A and B in alignment of A and B'
+        '[0.0,1.0] Threshold for coverage of s-exon A and B in alignment of A and B (default: %(default)s)',
+        default=0.8
     )
     parser.add_argument('--version',
                         action='version',
@@ -174,6 +181,8 @@ def run():
     gene = args.geneName
     path_data = args.path_data
     path_hhsuite_scripts = args.path_hhsuite_scripts
+    if not path_hhsuite_scripts:
+        raise Exception('You need to specify the path to the hhsuite scripts using the --path_hhsuite_scripts argument or by setting the HHSUITE_SCRIPTS environment variable.')
     msa_len = args.len
     msa_id_threshold = args.id  # maximum pairwise sequence identity
     re_align = args.norealign

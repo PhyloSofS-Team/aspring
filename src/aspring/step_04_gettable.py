@@ -3,6 +3,7 @@ import glob
 import os
 import sys
 import argparse
+import warnings
 
 from aspring import __version__
 
@@ -84,53 +85,56 @@ def hhr2df(path, gene):
         gene_df_line.append(hhr_info[8][3])  #e-val
         gene_df_line.append(hhr_info[8][4])  #p-val
         gene_df_line.append(hhr_info[8][5])  #score
-
-        flag = False
-        if '-' not in hhr_info[8][-3]:
-            colQ = hhr_info[8][-2]
-            flag = True
-        else:
-            colQ = hhr_info[8][-3]
-
-        if flag == True and hhr_info[8][-1].rsplit('(')[0].split('-')[0] != '':
-            colT = hhr_info[8][-1].rsplit('(')[0]
-        else:
-            colT = hhr_info[8][-2]
-        taille_Q = float(hhr_info[1][-1])
         try:
-            taille_T = float(hhr_info[8][-1])
-        except ValueError:
-            taille_T = float(hhr_info[16][-1].strip('()'))
+            flag = False
+            if '-' not in hhr_info[8][-3]:
+                colQ = hhr_info[8][-2]
+                flag = True
+            else:
+                colQ = hhr_info[8][-3]
 
-        gene_df_line.append(colQ)
-        gene_df_line.append(colT)
-        gene_df_line.append(taille_Q)
-        gene_df_line.append(taille_T)
-        gene_df_line.append(hhr_info[11][4].rstrip('%').strip('Identities='))
+            if flag == True and hhr_info[8][-1].rsplit('(')[0].split('-')[0] != '':
+                colT = hhr_info[8][-1].rsplit('(')[0]
+            else:
+                colT = hhr_info[8][-2]
+            taille_Q = float(hhr_info[1][-1])
+            try:
+                taille_T = float(hhr_info[8][-1])
+            except ValueError:
+                taille_T = float(hhr_info[16][-1].strip('()'))
 
-        #compute id cons
-        q = ""
-        t = ""
-        c = 0
-        for l in hhr_info:
-            if ' '.join(l).startswith("Q Consensus"):
-                q += l[3].upper()
-            if ' '.join(l).startswith("T Consensus"):
-                t += l[3].upper()
-        for k in range(min(len(q), len(t))):
-            if q[k] == t[k]:
-                if q[k] != "~":
-                    c = c + 1
-        gene_df_line.append(str(100 * c / len(q)))
+            gene_df_line.append(colQ)
+            gene_df_line.append(colT)
+            gene_df_line.append(taille_Q)
+            gene_df_line.append(taille_T)
+            gene_df_line.append(hhr_info[11][4].rstrip('%').strip('Identities='))
 
-        gene_df_line.append(hhr_info[11][5].strip('Similarity='))
-        gene_df_line.append(hhr_info[2][-1])  #nb species Q
-        gene_df_line.append(
-            len(
-                read_fasta(
-                    f'{path}/{gene}/thoraxe/msa/msa_s_exon_{hhr_info[8][1]}.fasta'
-                )))
-        gene_df.append(gene_df_line)
+            #compute id cons
+            q = ""
+            t = ""
+            c = 0
+            for l in hhr_info:
+                if ' '.join(l).startswith("Q Consensus"):
+                    q += l[3].upper()
+                if ' '.join(l).startswith("T Consensus"):
+                    t += l[3].upper()
+            for k in range(min(len(q), len(t))):
+                if q[k] == t[k]:
+                    if q[k] != "~":
+                        c = c + 1
+            gene_df_line.append(str(100 * c / len(q)))
+
+            gene_df_line.append(hhr_info[11][5].strip('Similarity='))
+            gene_df_line.append(hhr_info[2][-1])  #nb species Q
+            gene_df_line.append(
+                len(
+                    read_fasta(
+                        f'{path}/{gene}/thoraxe/msa/msa_s_exon_{hhr_info[8][1]}.fasta'
+                    )))
+            gene_df.append(gene_df_line)
+        # catch all the errors and show them as a warning
+        except Exception as e:
+            warnings.warn(f"hhr_info: {hhr_info}, error: {e}")
 
     df = pd.DataFrame(gene_df)
     df = df.rename(
