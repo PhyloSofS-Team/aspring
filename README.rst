@@ -77,14 +77,13 @@ Nomenclature
   :alt: ASPRING nomenclature explained using a ThorAxe Evolutionary Splicing Graph (ESG). The image shows an ASRU composed by two ASPRs, one of them composed by multiple s-exons.
 
 The figure shows an example of an **Alternatively Spliced Repetitive Unit** (**ASRU**)
-composed by two **spliced-repeats** (**s-repeats**), one of them composed
-by several **s-exons**.
+composed by two **spliced-repeats** (**s-repeats**), one of them defined by a single s-exon and the other one comprising multiple **s-exons**.
 
-The nodes are the s-exons. The opaque red boxes are the ASPRs, and the transparent red box
+The nodes are the s-exons. The opaque red boxes are the s-repeats, and the transparent red box
 is the ASRU.
 
-The **ASPRs** are repetitive units identified by ASPRING that consist of one or more s-exons
-alternatively spliced in different isoforms. Note that ASPRs are called **instances** on the
+The **s-repeats** are repetitive units identified by ASPRING consisting of one or more s-exons
+alternatively included or excluded in different isoforms. Note that s-repeats are called **instances** on the
 output tables.
 
 How to use aspring
@@ -93,8 +92,7 @@ How to use aspring
 ``aspring`` is a Python-based command-line tool that helps identify Alternative Splicing
 Repetitive Units (ASRUs) from Thoraxe outputs for a single query gene. The tool executes
 several steps that involve converting data, creating HMM profiles, aligning profiles,
-parsing and filtering alignments, and generating ASRUs and Alternatively Spliced Pseudo
-Repeats (ASPRs) tables for the query gene.
+parsing and filtering alignments, and generating ASRUs and spliced-repeats (s-repeats) tables for the query gene.
 
 Here is how to run the script after installing the package:
 
@@ -118,7 +116,7 @@ Here is how to run the script after installing the package:
    ``aspring --help`` to see the full list of options.
 
 The script will execute several steps and generate output files containing ASRU and
-ASPR tables for the query gene.
+s-repeats tables for the query gene.
 
 
 Docker
@@ -204,12 +202,11 @@ for the given ``gene``. Each row corresponds to a distinct ASRU and provides the
 information:
 
 - ``gene``: The Ensembl Gene ID for the given gene.
-- ``ASRU``: The set of duplicated s-exons, a.k.a Alternatively Spliced Pseudo Repeats (ASPRs)
-  that belong to the ASRU.
+- ``ASRU``: The set s-repeats belonging to the ASRU.
 - ``Nbinstances``: The number of Alternatively Spliced Pseudo Repeats of the ASRU that were
   found in the exonic regions of the gene.
-- ``max``: The length of the longest ASPR instance of the ASRU, in residues.
-- ``min``: The length of the shortest ASPR instance of the ASRU, in residues.
+- ``max``: The length of the longest s-repeat of the ASRU, in residues.
+- ``min``: The length of the shortest s-repeat of the ASRU, in residues.
 - ``moy``: The mean length of the instances of the ASRU, in amino acid residues.
 - ``median``: The median length of the instances of the ASRU, in residues.
 - ``std``: The standard deviation of the lengths of the instances of the ASRU, in amino acid
@@ -223,12 +220,12 @@ information:
 This table provides information on the instances of ASRUs detected for the given ``gene``.
 Each row corresponds to a distinct instance and provides the following information:
 
-- ``instance``: The sequence of the ASPR instance, in the form of a string of amino acid
+- ``instance``: The sequence of the s-repeat, in the form of a string of amino acid
   residues.
-- ``size``: The length of the ASPR instance, in amino acid residues.
-- ``NbSex``: The number of exonic regions where the ASPR instance was detected.
-- ``ASRU``: The set of homologous/duplicated s-exons that belong to the ASRU to which the ASPR
-  instance belongs.
+- ``size``: The length of the s-repeat, in amino acid residues.
+- ``NbSex``: The number of exonic regions where the s-repeat was detected.
+- ``ASRU``: The set of homologous/duplicated s-exons that belong to the ASRU to which the s-repeat
+   belongs.
 - ``gene``: The Ensembl Gene ID for the given gene.
  
 {gene}_duplication_pairs.csv
