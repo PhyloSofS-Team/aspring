@@ -177,6 +177,8 @@ The pipeline steps are:
 8. ``step_08_ASRUs``: Identifies the Alternative Splicing Repetitive Units (ASRUs) on the
    gene.
 9. ``step_09_clean``: Removes the intermediate files generated during the pipeline.
+10. ``step_10_struct``: Maps s-exons and ASRUs to the protein structures obtained from
+   AlphaFold DB.
 
 Note that the main script ``aspring`` **runs the entire pipeline** automatically. However,
 the user can also execute the scripts of each pipeline step individually for more control

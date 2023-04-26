@@ -169,8 +169,12 @@ def run_pipeline(gene, path_data, path_hhsuite_scripts, msa_len,
     subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
     print("END STEP 8")
 
-    print("START FINAL STEP : remove temporary files")
+    print("START STEP 9 : remove temporary files")
     bashCommand = f"step_09_clean --gene {gene} --path_data {path_data}"
+    subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
+
+    print("START FINAL STEP : map s-exons and ASRUs to the AlphaFold protein structures")
+    bashCommand = f"step_10_struct --gene {gene} --dataPATH {path_data}"
     subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
     print("END")
 

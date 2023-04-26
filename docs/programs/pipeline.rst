@@ -68,3 +68,10 @@ step_09_clean
 .. argparse::
     :ref: aspring.step_09_clean.get_arg_parser
     :prog: step_09_clean
+
+step_10_struct
+--------------
+
+.. argparse::
+    :ref: aspring.step_10_struct.get_arg_parser
+    :prog: step_10_struct
