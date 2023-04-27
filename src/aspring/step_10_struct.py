@@ -39,7 +39,7 @@ def get_sexon_coord(gid, tid, seqFname):
     i = 0
     found = False
     while (i < len(lines)) and (not found):
-        found = lines[i].startswith('>P1;'+gid+' '+tid)
+        found = lines[i].startswith('>P1;'+gid+' ') and tid in lines[i]
         i = i + 1
     # if the tid was found
     if found:
@@ -259,6 +259,7 @@ def get_uniprot_ids(species_gene_transcript_ids):
     server = BiomartServer("http://www.ensembl.org/biomart")
     uniprot_ids = []
 
+    data = []
     for species, group in grouped:
         dataset = server.datasets[f'{species}_gene_ensembl']
 
@@ -266,25 +267,20 @@ def get_uniprot_ids(species_gene_transcript_ids):
         transcript_ids = group['transcript_id'].tolist()
 
         response = dataset.search({
-            'attributes': ['ensembl_gene_id', 'ensembl_transcript_id', 'uniprotswissprot'],
+            'attributes': ['ensembl_gene_id', 'ensembl_transcript_id', 'uniprotswissprot', 'uniprotsptrembl'],
             'filters': {'ensembl_gene_id': gene_ids, 'ensembl_transcript_id': transcript_ids}
         })
 
-        uniprot_dict = {}
         for line in response.iter_lines():
             line = line.decode('utf-8')
             fields = line.split('\t')
-            fetched_gene_id, fetched_transcript_id, uniprot_id = fields
-            uniprot_dict[fetched_transcript_id] = uniprot_id
+            fetched_gene_id, fetched_transcript_id, uniprotswissprot, uniprotsptrembl = fields
+            uniprot_ids = [up for up in [uniprotswissprot, uniprotsptrembl]]
+            for uniprot_id in uniprot_ids:
+                if fetched_gene_id in gene_ids and fetched_transcript_id in transcript_ids:
+                   data.append((fetched_gene_id, fetched_transcript_id, uniprot_id))
 
-        uniprot_ids_group = [uniprot_dict.get(tid, '')
-                             for tid in group['transcript_id']]
-        uniprot_ids.extend(uniprot_ids_group)
-
-    # Add a column to the DataFrame with the UniProt IDs
-    df['uniprot_id'] = uniprot_ids
-
-    return df
+    return pd.DataFrame(data, columns=['gene_id', 'transcript_id', 'uniprot_id'])
 
 
 def download_pdb_structures(s_exon_table, output_path='.'):
@@ -329,6 +325,9 @@ def run():
 
         for gene_id, transcript_id, pdb_file in structures:
             coord = get_sexon_coord(gene_id, transcript_id, seqFname)
+            if coord is None:
+                print(f'Error: Could not find {transcript_id} (gene ID: {gene_id})')
+                continue
             d = get_sexon_id(dictFname)
             asrus = get_asrus(asruFname)
             pdb_code = pdb_file.split("/")[-1].split(".")[0]
