@@ -129,6 +129,16 @@ def get_pdb_span(pdb):
 
 # write out the PML file
 
+# Function to get the UniProt ID from the AlphaFold DB PDB file name
+# For example: A0A2C9C333 from AF-A0A2C9C333-F1-model_v4.pdb
+
+
+def get_uniprot_id_from_filename(pdb_filename):
+    # Split the file name at the hyphen and underscore characters
+    parts = pdb_filename.split("-")
+    uniprot_id = parts[1]  # Extract the UniProt ID
+    return uniprot_id
+
 
 def write_pml(coord, d, asrus, pdb, outname):
     fout = open(outname, "w")
@@ -137,7 +147,8 @@ def write_pml(coord, d, asrus, pdb, outname):
     span = get_pdb_span(pdb)
     nameProt = pdb.split('/')[-1][:-4]
     fout.write('color white '+nameProt+'\n')
-    partnerId = 'p'+pdb[-5]
+    # partnerId = 'p'+pdb[-5]
+    partnerId = get_uniprot_id_from_filename(nameProt)
     mycolsex = ['skyblue', 'yelloworange']
     mycolasru = ['firebrick', 'lime']
     coli = 0
