@@ -1,3 +1,4 @@
+import shutil
 import pandas as pd
 import requests
 from biomart import BiomartServer
@@ -189,6 +190,7 @@ def write_pml(coord, d, asrus, pdb, outname):
                    ' or '.join(currentInst[1])+' and '+nameProt+'\n')
         # set the color
         fout.write('color '+mycolasru[colj]+', '+namSel+'\n')
+    fout.write('deselect\n')
     fout.close()
 
 
@@ -278,7 +280,7 @@ def get_uniprot_ids(species_gene_transcript_ids):
             uniprot_ids = [up for up in [uniprotswissprot, uniprotsptrembl]]
             for uniprot_id in uniprot_ids:
                 if fetched_gene_id in gene_ids and fetched_transcript_id in transcript_ids:
-                   data.append((fetched_gene_id, fetched_transcript_id, uniprot_id))
+                    data.append((fetched_gene_id, fetched_transcript_id, uniprot_id))
 
     return pd.DataFrame(data, columns=['gene_id', 'transcript_id', 'uniprot_id'])
 
@@ -305,6 +307,31 @@ def download_pdb_structures(s_exon_table, output_path='.'):
     return structures
 
 
+def get_pdb_sequence_length(pdb):
+    sequence_length = 0
+    with open(pdb, 'r') as f:
+        for line in f.readlines():
+            if line.startswith("ATOM") and line[12:16].strip() == "CA":
+                sequence_length += 1
+    return sequence_length
+
+
+def get_transcript_sequence_length(gid, tid, seqFname):
+    with open(seqFname, 'r') as fseq:
+        lines = fseq.readlines()
+
+    i = 0
+    found = False
+    while i < len(lines) and not found:
+        found = lines[i].startswith('>P1;' + gid + ' ') and tid in lines[i]
+        i += 1
+
+    if found:
+        return len(lines[i].strip())
+    else:
+        return None
+
+
 def run():
     args = parse_args(sys.argv[1:])
     gene = args.geneName
@@ -317,9 +344,9 @@ def run():
 
     if os.path.exists(asruFname):
         output_path = os.path.join(path_data, 'data', gene, 'structures')
-
-        if not os.path.exists(output_path):
-            os.makedirs(output_path)
+        if os.path.exists(output_path):
+            shutil.rmtree(output_path)
+        os.makedirs(output_path)
 
         structures = download_pdb_structures(s_exon_table, output_path=output_path)
 
@@ -328,6 +355,13 @@ def run():
             if coord is None:
                 print(f'Error: Could not find {transcript_id} (gene ID: {gene_id})')
                 continue
+
+            pdb_seq_length = get_pdb_sequence_length(pdb_file)
+            transcript_seq_length = get_transcript_sequence_length(
+                gene_id, transcript_id, seqFname)
+            if pdb_seq_length != transcript_seq_length:
+                continue
+
             d = get_sexon_id(dictFname)
             asrus = get_asrus(asruFname)
             pdb_code = pdb_file.split("/")[-1].split(".")[0]
