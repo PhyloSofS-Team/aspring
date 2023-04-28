@@ -177,8 +177,7 @@ The pipeline steps are:
 8. ``step_08_ASRUs``: Identifies the Alternative Splicing Repetitive Units (ASRUs) on the
    gene.
 9. ``step_09_clean``: Removes the intermediate files generated during the pipeline.
-10. ``step_10_struct``: Maps s-exons and ASRUs to the protein structures obtained from
-   AlphaFold DB.
+10. ``step_10_struct``: Maps s-exons and ASRUs to the protein structures obtained from AlphaFold DB.
 
 Note that the main script ``aspring`` **runs the entire pipeline** automatically. However,
 the user can also execute the scripts of each pipeline step individually for more control
@@ -195,6 +194,9 @@ For a given ``gene`` (Ensembl Gene ID), ASPRING returns:
 - ``{gene}_duplication_pairs.csv``
 - ``{gene}_eventsDup_withCols.txt``
 - ``DupRaw/{gene}`` folder containing the ``s-exon_A.s-exon_B.hhr`` files (HMM-HMM alignments) 
+- ``structures`` folder containing the isoform structures obtained from 
+  `AlphaFold DB`_ (``.pdb`` files) and a set of `PyMol`_ scripts (``.pml`` files) with the 
+  s-exons and ASRUs selected and colored in the structure.
 
 {gene}_ASRUs_table.csv
 ----------------------
@@ -288,6 +290,30 @@ information:
   "start-end".
 
 
+structures
+----------
+
+This directory contains the isoform structures predicted by AlphaFold 2 that were obtained
+from `AlphaFold DB`_. These are the files with the ``.pdb`` extension. The folder also contains
+a PyMol script for each transcript whose isoform has a known downloaded structure. Those
+scripts have a name composed of the Ensembl gene name, followed by the transcript name, and ending with
+the file name of the AlphaFold structure and the ``.pml`` extension. For example,
+``ENSG00000007866_ENST00000338863_AF-Q99594-F1-model_v4.pml`` is the PyMol script for the isoform
+corresponding to the transcript ``ENST00000338863`` of the gene ``ENSG00000007866``. 
+When you run that script using `PyMol`_ as:
+
+.. code-block:: bash
+
+  pymol ENSG00000007866_ENST00000338863_AF-Q99594-F1-model_v4.pml
+  
+You will see the AlphaFold predicted structure of the isoform with the s-exon colored in 
+alternating light blue and yellow, and the ASRUs in red and green. For example, the 
+following image shows the PyMOL session for the ``ENST00000338863`` transcript:
+
+.. image:: https://raw.githubusercontent.com/PhyloSofS-Team/aspring/main/docs/_static/pymol.png
+  :alt: Screen capture of the PyMOL session for the ``ENST00000338863`` transcript showing the s-exons alternating in light blue and yellow, and the ARSU in red.
+
+
 .. _pyscaffold-notes:
 
 Note
@@ -303,3 +329,5 @@ PyScaffold see https://pyscaffold.org/.
 .. _Ases web server: http://www.lcqb.upmc.fr/Ases
 .. _Docker Hub: https://hub.docker.com/r/diegozea/aspring
 .. _official website: https://www.docker.com/
+.. _AlphaFold DB: https://alphafold.ebi.ac.uk/
+.. _PyMol: https://pymol.org/
