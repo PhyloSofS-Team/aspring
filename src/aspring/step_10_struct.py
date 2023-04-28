@@ -142,7 +142,8 @@ def get_uniprot_id_from_filename(pdb_filename):
 
 def write_pml(coord, d, asrus, pdb, outname):
     fout = open(outname, "w")
-    fout.write('load '+pdb+'\n')
+    # use the PDB file in the current directory to avoid problems when running on Docker
+    fout.write('load '+pdb.split('/')[-1]+'\n')
     fout.write('bg_color white\n')
     span = get_pdb_span(pdb)
     nameProt = pdb.split('/')[-1][:-4]
